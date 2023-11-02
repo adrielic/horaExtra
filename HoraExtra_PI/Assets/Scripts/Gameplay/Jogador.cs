@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mecânicas, como movimentação, interação, etc.
 {
-    [SerializeField] private float vel = 5f, energia, taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
-    private bool movendo = false, descansando = false, correndo = false, interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
+    [SerializeField]
+    private float vel = 5f,
+        energia,
+        taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
+    private bool movendo = false,
+        descansando = false,
+        correndo = false,
+        interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
     private Rigidbody2D jogRB; //Variável que recebe o componente Rigidbody2D, utilizado no sistema de movimentação de personagem.
 
     public static string objetoProximo; //Variável utilizada para verificação do objeto no qual o jogador está colidindo no momento, servindo de base para o sistema de interação. Precisa ser pública e estática, para que possa ser chamada nas classes onde a verificação acontece.
+
+    //Interação Fase 3
+    private bool segurandoProd = false;
+    private GameObject objInteragivel;
+    public static GameObject produto;
 
     void Start()
     {
@@ -19,6 +30,9 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
     void Update()
     {
         Movimentacao(); //Executando o método de movimentação.
+
+        if(Input.GetKey(KeyCode.F))
+            Interacao();
     }
 
     void Movimentacao() //Método de movimentação de personagem, incluindo a lógica para corrida, consumo e regeneração de energia.
@@ -77,6 +91,33 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         }
     }
 
+    void Interacao()
+    {
+        //Fase 3
+        switch (objetoProximo)
+        {
+            case "Caixa":
+                if (!segurandoProd)
+                {
+                    objInteragivel.GetComponent<F3Caixas>().interagindoCPlayer = true;
+                    segurandoProd = true;
+                }
+                break;
+            case "Prateleiras":
+                if (segurandoProd)
+                {
+                    if (produto.gameObject.GetComponent<F3Produtos>().tipo
+                        == objInteragivel.GetComponent<F3Prateleiras>().tipo)
+                    {
+                        Pontuacao.pontos += 150;
+                        objInteragivel.GetComponent<F3Prateleiras>().produto = produto;
+                        segurandoProd = false;
+                    }
+                }
+                break;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col) //Função de verificação de colisores em estado Trigger por frame atualizado.
     {
         switch (col.gameObject.tag) //Verifica a tag do objeto em que o jogador está colidindo, mudando os valores das variáveis relacionadas ao sistema de interação.
@@ -96,6 +137,14 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
                 objetoProximo = col.gameObject.name;
                 Debug.Log("objetoProximo = " + objetoProximo);
                 break;
+            case "F3Ca":
+                objetoProximo = "Caixa";
+                objInteragivel = col.gameObject;
+                break;
+            case "F3Pa":
+                objetoProximo = "Prateleiras";
+                objInteragivel = col.gameObject;
+                break;
         }
     }
 
@@ -114,6 +163,12 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
             case "F4TB":
                 interagindo = false;
                 objetoProximo = "";
+                break;
+            case "Caixa":
+                objetoProximo = null;
+                break;
+            case "Prateleiras":
+                objetoProximo = null;
                 break;
         }
     }
