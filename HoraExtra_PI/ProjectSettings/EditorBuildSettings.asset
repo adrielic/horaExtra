@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu Principal.unity
+    guid: a3396754fd7e979479e62523f97060bf
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 33bf00ac198fbb74791f9fcc9a4f9c56
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 1.unity
+    guid: 6ec6f2c62e8a3e5468ad6ce658bdb42b
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 2.unity
+    guid: d2a04c916d763f94bb741bddfe499a03
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 3.unity
+    guid: 0ae0cd59562ae314b9987697004d2923
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 4.unity
+    guid: 02d7b312243ffc749bc660961940dbaa
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 5.unity
+    guid: e2d19eac4d851ce4ea597c16c99bb98e
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 6.unity
+    guid: f96ff18186af79e40aff48dab955852f
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 7.unity
+    guid: edf2d109c5c9c814f851ae7297ab7d78
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 8.unity
+    guid: 6b2c3d6f3f9558342b516acbba66212d
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 9.unity
+    guid: 801ff6cb95acfbd43b5bfdb430252d0e
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 10.unity
+    guid: bff39def6fd91534c9f89bab7332f1b4
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Fase 1.unity
+    guid: 3f42706c4efd84240a204007b75db79b
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Fase 2.unity
+    guid: 6194160dd3754e5468c0a489b0137528
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Fase 3.unity
+    guid: 9bc411b8560f8c44cb2a49447e73a5b0
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Fase 4.unity
+    guid: baa33cfac1a2d0e46966c01f1d9a531a
+  m_configObjects: {}
