@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Filas : MonoBehaviour
+public class F4Clientes : MonoBehaviour
 {
     private Rigidbody2D npcRB;
     private float contagem, tempoLimite = 10f;
     private bool noCaixa = false;
+    private string caixa;
 
     void Start()
     {
         npcRB = GetComponent<Rigidbody2D>();
 
-        if (GeradorNPCs.numFila == 0)
+        if (F4Filas.numFila == 0)
         {
-            GeradorNPCs.fila1.Enqueue(gameObject);
-            Debug.Log(GeradorNPCs.fila1.Peek() + " é o primeiro da fila 1");
+            F4Filas.fila1.Enqueue(gameObject);
+            Debug.Log(F4Filas.fila1.Peek() + " é o primeiro da fila 1");
         }
-        else if (GeradorNPCs.numFila == 1)
+        else if (F4Filas.numFila == 1)
         {
-            GeradorNPCs.fila2.Enqueue(gameObject);
-            Debug.Log(GeradorNPCs.fila2.Peek() + " é o primeiro da fila 2");
+            F4Filas.fila2.Enqueue(gameObject);
+            Debug.Log(F4Filas.fila2.Peek() + " é o primeiro da fila 2");
         }
 
         Movimentacao(5f);
@@ -34,67 +35,51 @@ public class Filas : MonoBehaviour
 
             if (contagem >= tempoLimite)
             {
-                if (GeradorNPCs.fila1.Contains(gameObject))
+                if (F4Filas.fila1.Contains(gameObject))
                 {
-                    GeradorNPCs.fila1.Dequeue();
-                    GeradorNPCs.falhas++;
+                    F4Filas.fila1.Dequeue();
+                    F4Filas.falhas++;
                 }
-                else if (GeradorNPCs.fila2.Contains(gameObject))
+                else if (F4Filas.fila2.Contains(gameObject))
                 {
-                    GeradorNPCs.fila2.Dequeue();
-                    GeradorNPCs.falhas++;
+                    F4Filas.fila2.Dequeue();
+                    F4Filas.falhas++;
                 }
 
                 Debug.Log(gameObject.name + " saiu da fila");
-                Debug.Log("falhas = " + GeradorNPCs.falhas);
+                Debug.Log("falhas = " + F4Filas.falhas);
                 Sair();
             }
 
             break;
         }
 
-        while (noCaixa && Jogador.objetoProximo == "Caixa1")
+        while (noCaixa && Jogador.objetoProximo == caixa)
         {
-            InteragirFila1();
-            break;
-        }
-
-        while (noCaixa && Jogador.objetoProximo == "Caixa2")
-        {
-            InteragirFila2();
+            AtenderFila();
             break;
         }
     }
 
-    void InteragirFila1()
+    void AtenderFila()
     {
         Debug.Log("F para interagir");
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (GeradorNPCs.fila1.Contains(gameObject))
+            if (F4Filas.fila1.Contains(gameObject))
             {
-                GeradorNPCs.fila1.Dequeue();
-                Pontuacao.pontos += 50;
-                Debug.Log(gameObject.name + " atendido na fila 1");
-                Sair();
+                F4Filas.fila1.Dequeue();
             }
-        }
-    }
 
-    void InteragirFila2()
-    {
-        Debug.Log("F para interagir");
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (GeradorNPCs.fila2.Contains(gameObject))
+            if (F4Filas.fila2.Contains(gameObject))
             {
-                GeradorNPCs.fila2.Dequeue();
-                Pontuacao.pontos += 50;
-                Debug.Log(gameObject.name + " atendido na fila 2");
-                Sair();
+                F4Filas.fila2.Dequeue();
             }
+
+            Sair();
+            Pontuacao.pontos += 50;
+            Debug.Log(gameObject.name + " atendido");
         }
     }
 
@@ -115,6 +100,7 @@ public class Filas : MonoBehaviour
         {
             Movimentacao(0f);
             noCaixa = true;
+            caixa = col.gameObject.name;
         }
 
         if (col.gameObject.tag == "NPC")
@@ -129,6 +115,7 @@ public class Filas : MonoBehaviour
         {
             Movimentacao(5f);
             noCaixa = false;
+            caixa = null;
         }
 
         if (col.gameObject.tag == "NPC")

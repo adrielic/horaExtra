@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Telefone : MonoBehaviour
+public class F4Telefone : MonoBehaviour
 {
     [SerializeField] private float contagem, tempoLimite = 5f;
     private bool tocando = false;
@@ -43,7 +43,7 @@ public class Telefone : MonoBehaviour
         {
             tocando = false;
             contagem = 0f;
-            Pontuacao.pontos += 20;
+            Pontuacao.pontos += 25;
             Debug.Log("Ligação atendida");
         }
     }

@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 1775122749}
     - target: {fileID: 6487688852259234683, guid: 83061297fa587204ebdb2631d4539511, type: 3}
       propertyPath: m_SortingLayerID
-      value: 1886322757
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -400,6 +400,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787924078830889127, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: cc
+      value: 
+      objectReference: {fileID: 686777127}
+    - target: {fileID: 787924078830889127, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: objCC
+      value: 
+      objectReference: {fileID: 686777124}
     - target: {fileID: 1374208351651394458, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
       propertyPath: m_Pivot.x
       value: 0

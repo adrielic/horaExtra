@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class GerenciadorPausa : MonoBehaviour
 {
-    public GameObject objCc;
+    public GameObject objCC;
     public ChaveCenas cc;
 
-    void Awake()
+    void Start()
     {
-        //objCc.SetActive(true);
+        
     }
 
     public void Continuar()
     {
-        cc.IniciarCena(GerenciadorCenas.cenaAnterior);
-        Debug.Log("Continuando " + GerenciadorCenas.cenaAnterior);
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
     }
 
     public void RetornarMenu()
     {
+        Time.timeScale = 1;
         cc.IniciarCena("Menu Principal");
-        Debug.Log("Retornando ao menu");
     }
 }

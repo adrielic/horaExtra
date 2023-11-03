@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - F3Ca
+  - F3Pa
+  - F4TA
+  - F4TB
+  - NPC
+  - F1Ca
+  - F1Ar
   layers:
   - Default
   - TransparentFX

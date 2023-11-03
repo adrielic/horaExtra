@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mecânicas, como movimentação, interação, etc.
 {
+    //Gerais.
     [SerializeField]
-    private float vel = 5f,
-        energia,
-        taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
-    private bool movendo = false,
-        descansando = false,
-        correndo = false,
-        interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
+    private float vel = 5f, energia, taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
+    private bool movendo = false, descansando = false, correndo = false, interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
     private Rigidbody2D jogRB; //Variável que recebe o componente Rigidbody2D, utilizado no sistema de movimentação de personagem.
+    private Vector2 dir; //Recebe os valores de direção para qual o jogador pode se mover.
 
     public static string objetoProximo; //Variável utilizada para verificação do objeto no qual o jogador está colidindo no momento, servindo de base para o sistema de interação. Precisa ser pública e estática, para que possa ser chamada nas classes onde a verificação acontece.
 
-    //Interação Fase 3
+    //Interação Fase 3.
     private bool segurandoProd = false;
     private GameObject objInteragivel;
     public static GameObject produto;
@@ -31,7 +28,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
     {
         Movimentacao(); //Executando o método de movimentação.
 
-        if(Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
             Interacao();
     }
 
@@ -40,7 +37,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         float dirX = Input.GetAxisRaw("Horizontal"); //Input de movimentação horizontal.
         float dirY = Input.GetAxisRaw("Vertical"); //Input de movimentação vertical.
 
-        Vector2 dir = new Vector2(dirX, dirY); //Vetor contendo as duas direções do qual o jogador pode se mover.
+        dir = new Vector2(dirX, dirY); //Vetor contendo as duas direções do qual o jogador pode se mover.
         jogRB.velocity = dir * vel; //Lógica de movimentação por velocity. O valor das variáveis de direção (0, 1 e -1) é multiplicado pela velocidade.
 
         if ((dirX > 0 || dirX < 0) || (dirY > 0 || dirY < 0)) //Verificando as direções em que o jogador está se movimentando e mudando o valor das variáveis que determinam se está parado ou se movimentando.
@@ -74,7 +71,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         {
             if (energia < 100) //Verifica se a energia está abaixo de 100.
             {
-                energia += (taxaConsumo / 2) * Time.deltaTime; //Adiciona o valor da taxa de consumo (10) dividido por 2 ao total de energia, por segundo. (5/s).
+                energia += taxaConsumo / 2 * Time.deltaTime; //Adiciona o valor da taxa de consumo (10) dividido por 2 ao total de energia, por segundo. (5/s).
 
                 if (descansando) //Verifica se o jogador está parado.
                 {
@@ -154,20 +151,20 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         {
             case "NPC":
                 interagindo = false;
-                objetoProximo = "";
+                objetoProximo = null;
                 break;
             case "F4TA":
                 interagindo = false;
-                objetoProximo = "";
+                objetoProximo = null;
                 break;
             case "F4TB":
                 interagindo = false;
-                objetoProximo = "";
-                break;
-            case "Caixa":
                 objetoProximo = null;
                 break;
-            case "Prateleiras":
+            case "F3Ca":
+                objetoProximo = null;
+                break;
+            case "F3Pa":
                 objetoProximo = null;
                 break;
         }

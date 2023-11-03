@@ -7,18 +7,20 @@ using Unity.VisualScripting;
 public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que iniciam as tarefas e as mantém sendo atualizadas.
 {
     private Contador contador; //Recebe a instância da classe Contador.
-    private IEnumerator fase4_tarefaA; //Recebe a coroutine da tarefa principal da fase 4 (Operação de caixa).
-    private IEnumerator fase4_tarefaB; //Recebe a coroutine da tarefa secundária da fase 4 (Atender o telefone).
+    private IEnumerator f1_caixas;
+    private IEnumerator f4_filas; //Recebe a coroutine da tarefa principal da fase 4 (Operação de caixa).
+    private IEnumerator f4_telefone; //Recebe a coroutine da tarefa secundária da fase 4 (Atender o telefone).
 
-    public static bool iniciandoNPC = false, iniciandoTel = false; //Indicam se as determinadas tarefas foram iniciadas.
+    public static bool iniciandoCaixasT1 = false, iniciandoCaixasT2 = false, iniciandoNPC = false, iniciandoTel = false; //Indicam se as determinadas tarefas foram iniciadas.
     public TMP_Text notificacaoUI; //Recebe o componente de texto onde são exibidas as notificações de tarefas.
 
     void Start()
     {
         contador = GetComponent<Contador>(); //Instanciando a classe Contador.
+        f1_caixas = IniciarF1Caixas(2f);
         //Atribua as coroutines às suas respectivas funções aqui.
-        fase4_tarefaA = IniciarNPC(5f); //Atribuindo a coroutine fase4_tarefaA à função correspondente, determinando o intervalo de tempo entre cada ciclo.
-        fase4_tarefaB = IniciarTelefone(10f); //Atribuindo a coroutine fase4_tarefaB à função correspondente, determinando o intervalo de tempo entre cada ciclo.
+        f4_filas = IniciarF4Filas(5f); //Atribuindo a coroutine fase4_tarefaA à função correspondente, determinando o intervalo de tempo entre cada ciclo.
+        f4_telefone = IniciarF4Tel(10f); //Atribuindo a coroutine fase4_tarefaB à função correspondente, determinando o intervalo de tempo entre cada ciclo.
 
         if (GerenciadorCenas.cenaAtual.name == "Fase 1") //Verificando se a cena atual é a Fase 1.
         {
@@ -26,7 +28,7 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
 
             if (contador.contando) //Verificando se o contador foi iniciado, em seguida iniciando as coroutines relacionadas a cada tarefa.
             {
-                //Inicie as coroutines da fase aqui.
+                StartCoroutine(f1_caixas);
             }
 
             Debug.Log(GerenciadorCenas.cenaAtual.name + ": Iniciando tarefas");
@@ -59,8 +61,8 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
 
             if (contador.contando) //Verificando se o contador foi iniciado, em seguida iniciando as coroutines relacionadas a cada tarefa.
             {
-                StartCoroutine(fase4_tarefaA); //Iniciando a coroutine das filas do caixa.
-                StartCoroutine(fase4_tarefaB); //Iniciando a coroutine do telefone.
+                StartCoroutine(f4_filas); //Iniciando a coroutine das filas do caixa.
+                StartCoroutine(f4_telefone); //Iniciando a coroutine do telefone.
             }
 
             Debug.Log(GerenciadorCenas.cenaAtual.name + ": Iniciando tarefas");
@@ -71,14 +73,40 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
     {
         if (!contador.contando) //Verificando se o contador foi pausado, em seguida também pausando as coroutines relacionadas a cada tarefa.
         {
-            StopCoroutine(fase4_tarefaA);
-            StopCoroutine(fase4_tarefaB);
+            StopAllCoroutines();
+        }
+    }
+
+    IEnumerator IniciarF1Caixas(float espera)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(espera); //Aguardando o tempo de espera antes de rodar a coroutine.
+            int r = Random.Range(0, 5);
+            int r2 = Random.Range(0, 5);
+
+            while (F1GeradorCaixas.limite < 5)
+            {
+                if (r == 1) //Verificando se o valor foi atendido.
+                {
+                    iniciandoCaixasT1 = true;
+                    notificacaoUI.text = "Novas mercadorias acabaram de chegar."; //Exibindo a notificação de tarefa na tela.
+                }
+
+                if (r2 == 1) //Verificando se o valor foi atendido.
+                {
+                    iniciandoCaixasT2 = true;
+                    notificacaoUI.text = "Há novas mercadorias prontas para serem entregues."; //Exibindo a notificação de tarefa na tela.
+                }
+                
+                break;
+            }
         }
     }
 
     //Crie novas coroutines para as demais tarefas aqui.
 
-    IEnumerator IniciarNPC(float espera) //Coroutine que inicia a tarefa do caixa na fase 4.
+    IEnumerator IniciarF4Filas(float espera) //Coroutine que inicia a tarefa do caixa na fase 4.
     {
         while (true)
         {
@@ -93,7 +121,7 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
         }
     }
 
-    IEnumerator IniciarTelefone(float espera) //Coroutine relacionada à mecânica do telefone referente a fase 4.
+    IEnumerator IniciarF4Tel(float espera) //Coroutine relacionada à mecânica do telefone referente a fase 4.
     {
         while (true)
         {

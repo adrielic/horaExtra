@@ -15,6 +15,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
     public GameObject objCC; //Recebe o game object Chave de Cenas.
     public ChaveCenas cc; //Recebe a instância da classe ChaveCenas.
     public TMP_Text dialogosUI; //Recebe o componente de texto onde são exibidos os diálogos na tela.
+    public GameObject painelPausa;
 
     void Awake()
     {
@@ -61,66 +62,66 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                     proximaCena = "Cena 2";
                     break;
                 case "Cena 2":
-                    dialogos.Enqueue("2Isso");
-                    dialogos.Enqueue("2É");
-                    dialogos.Enqueue("2Um");
-                    dialogos.Enqueue("2Teste");
+                    dialogos.Enqueue("Isso (2)");
+                    dialogos.Enqueue("É (2)");
+                    dialogos.Enqueue("Um (2)");
+                    dialogos.Enqueue("Teste (2)");
                     proximaCena = "Fase 1";
                     break;
                 case "Cena 3":
-                    dialogos.Enqueue("3Isso");
-                    dialogos.Enqueue("3É");
-                    dialogos.Enqueue("3Um");
-                    dialogos.Enqueue("3Teste");
+                    dialogos.Enqueue("Isso (3)");
+                    dialogos.Enqueue("É (3)");
+                    dialogos.Enqueue("Um (3)");
+                    dialogos.Enqueue("Teste (3)");
                     proximaCena = "Fase 2";
                     break;
                 case "Cena 4":
-                    dialogos.Enqueue("4Isso");
-                    dialogos.Enqueue("4É");
-                    dialogos.Enqueue("4Um");
-                    dialogos.Enqueue("4Teste");
+                    dialogos.Enqueue("Isso (4)");
+                    dialogos.Enqueue("É (4)");
+                    dialogos.Enqueue("Um (4)");
+                    dialogos.Enqueue("Teste (4)");
                     proximaCena = "Cena 5";
                     break;
                 case "Cena 5":
-                    dialogos.Enqueue("5Isso");
-                    dialogos.Enqueue("5É");
-                    dialogos.Enqueue("5Um");
-                    dialogos.Enqueue("5Teste");
+                    dialogos.Enqueue("Isso (5)");
+                    dialogos.Enqueue("É (5)");
+                    dialogos.Enqueue("Um (5)");
+                    dialogos.Enqueue("Teste (5)");
                     proximaCena = "Fase 3";
                     break;
                 case "Cena 6":
-                    dialogos.Enqueue("6Isso");
-                    dialogos.Enqueue("6É");
-                    dialogos.Enqueue("6Um");
-                    dialogos.Enqueue("6Teste");
+                    dialogos.Enqueue("Isso (6)");
+                    dialogos.Enqueue("É (6)");
+                    dialogos.Enqueue("Um (6)");
+                    dialogos.Enqueue("Teste (6)");
                     proximaCena = "Cena 7";
                     break;
                 case "Cena 7":
-                    dialogos.Enqueue("7Isso");
-                    dialogos.Enqueue("7É");
-                    dialogos.Enqueue("7Um");
-                    dialogos.Enqueue("7Teste");
+                    dialogos.Enqueue("Isso (7)");
+                    dialogos.Enqueue("É (7)");
+                    dialogos.Enqueue("Um (7)");
+                    dialogos.Enqueue("Teste (7)");
                     proximaCena = "Cena 8";
                     break;
                 case "Cena 8":
-                    dialogos.Enqueue("8Isso");
-                    dialogos.Enqueue("8É");
-                    dialogos.Enqueue("8Um");
-                    dialogos.Enqueue("8Teste");
+                    dialogos.Enqueue("Isso (8)");
+                    dialogos.Enqueue("É (8)");
+                    dialogos.Enqueue("Um (8)");
+                    dialogos.Enqueue("Teste (8)");
                     proximaCena = "Fase 4";
                     break;
                 case "Cena 9":
-                    dialogos.Enqueue("9Isso");
-                    dialogos.Enqueue("9É");
-                    dialogos.Enqueue("9Um");
-                    dialogos.Enqueue("9Teste");
+                    dialogos.Enqueue("Isso (9)");
+                    dialogos.Enqueue("É (9)");
+                    dialogos.Enqueue("Um (9)");
+                    dialogos.Enqueue("Teste (9)");
                     proximaCena = "Cena 10";
                     break;
                 case "Cena 10":
-                    dialogos.Enqueue("10Isso");
-                    dialogos.Enqueue("10É");
-                    dialogos.Enqueue("10Um");
-                    dialogos.Enqueue("10Teste");
+                    dialogos.Enqueue("Isso (10)");
+                    dialogos.Enqueue("É (10)");
+                    dialogos.Enqueue("Um (10)");
+                    dialogos.Enqueue("Teste (10)");
                     proximaCena = "Menu Principal";
                     break;
             }
@@ -132,6 +133,12 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            painelPausa.SetActive(true);
+        }
+
         while (tipoCena == "Gameplay") //Rodando enquanto uma cena de gameplay está ativa.
         {
             if (Pontuacao.resultado == "Vitoria") //Verificando se o resultado da fase foi de vitória, congelando o tempo em seguida.
