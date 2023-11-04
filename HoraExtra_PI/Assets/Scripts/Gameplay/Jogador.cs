@@ -6,12 +6,21 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
 {
     //Gerais.
     [SerializeField]
-    private float vel = 5f, energia, taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
-    private bool movendo = false, descansando = false, correndo = false, interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
+    private float vel = 5f,
+        energia,
+        taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
+    private bool movendo = false,
+        descansando = false,
+        correndo = false,
+        interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
     private Rigidbody2D jogRB; //Variável que recebe o componente Rigidbody2D, utilizado no sistema de movimentação de personagem.
     private Vector2 dir; //Recebe os valores de direção para qual o jogador pode se mover.
 
     public static string objetoProximo; //Variável utilizada para verificação do objeto no qual o jogador está colidindo no momento, servindo de base para o sistema de interação. Precisa ser pública e estática, para que possa ser chamada nas classes onde a verificação acontece.
+
+    //Interação Fase2.
+    public bool segurandoItemLimpeza = false;
+    public GameObject ItemLimpeza; //Precisa ser isolado, pois é uma verificação mais específica
 
     //Interação Fase 3.
     private bool segurandoProd = false;
@@ -90,11 +99,35 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
 
     void Interacao()
     {
-        //Fase 3
         switch (objetoProximo)
         {
+            //Fase 2
+            case "F2IL":
+            //Se está colidindo com o item de limpeza, e não está segurando nada...
+                if (!segurandoProd && !segurandoItemLimpeza)
+                {
+                    //Pegamos o item de limpeza
+                    ItemLimpeza.GetComponent<F2ItemLimpeza>().sendoSegurado = true;
+                    segurandoItemLimpeza = true;
+                }
+                break;
+            case "F2Ar":
+            //Se estamos colidindo com alguma Armário de limpeza, e estamos com um item de limpeza...
+                if (segurandoItemLimpeza)
+                {
+                    //Verificamos se é o Armário certo do item, se sim, guardamos ele
+                    if (ItemLimpeza.GetComponent<F2ItemLimpeza>().local == objInteragivel.name)
+                    {
+                        ItemLimpeza.GetComponent<F2ItemLimpeza>().sendoSegurado = false;
+                        ItemLimpeza = null;
+                        segurandoItemLimpeza = false;
+                    }
+                }
+                break;
+
+            //Fase 3
             case "Caixa":
-                if (!segurandoProd)
+                if (!segurandoProd && !segurandoItemLimpeza)
                 {
                     objInteragivel.GetComponent<F3Caixas>().interagindoCPlayer = true;
                     segurandoProd = true;
@@ -103,8 +136,10 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
             case "Prateleiras":
                 if (segurandoProd)
                 {
-                    if (produto.gameObject.GetComponent<F3Produtos>().tipo
-                        == objInteragivel.GetComponent<F3Prateleiras>().tipo)
+                    if (
+                        produto.gameObject.GetComponent<F3Produtos>().tipo
+                        == objInteragivel.GetComponent<F3Prateleiras>().tipo
+                    )
                     {
                         Pontuacao.pontos += 150;
                         objInteragivel.GetComponent<F3Prateleiras>().produto = produto;
@@ -142,6 +177,17 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
                 objetoProximo = "Prateleiras";
                 objInteragivel = col.gameObject;
                 break;
+            case "F2IL":
+                if (!segurandoItemLimpeza && !segurandoProd)
+                {
+                    objetoProximo = col.gameObject.tag;
+                    ItemLimpeza = col.gameObject;
+                }
+                break;
+            case "F2Ar":
+                objetoProximo = col.gameObject.tag;
+                objInteragivel = col.gameObject;
+                break;
         }
     }
 
@@ -165,6 +211,12 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
                 objetoProximo = null;
                 break;
             case "F3Pa":
+                objetoProximo = null;
+                break;
+            case "F2IL":
+                objetoProximo = null;
+                break;
+            case "F2Ar":
                 objetoProximo = null;
                 break;
         }

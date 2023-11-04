@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 90061477738496090}
   - component: {fileID: 497472538790765932}
   - component: {fileID: 1644001372144416281}
-  - component: {fileID: 1852026591631603648}
   - component: {fileID: 1565069176849946167}
+  - component: {fileID: 8840547985205349162}
   m_Layer: 0
   m_Name: F3Caixa3
   m_TagString: F3Ca
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7270740450978076397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 27.25, y: 4.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -132,7 +132,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!58 &1852026591631603648
+--- !u!114 &1565069176849946167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270740450978076397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5ac384cbec0b94094128f5e44a5cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefProduto: {fileID: 3882362347437210496, guid: f951d7faa58a0e04c8979ece18b8ca43, type: 3}
+  interagindoCPlayer: 0
+--- !u!58 &8840547985205349162
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,17 +181,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &1565069176849946167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7270740450978076397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5ac384cbec0b94094128f5e44a5cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefProduto: {fileID: 3882362347437210496, guid: f951d7faa58a0e04c8979ece18b8ca43, type: 3}
-  interagindoCPlayer: 0

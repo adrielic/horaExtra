@@ -11,6 +11,8 @@ TagManager:
   - NPC
   - F1Ca
   - F1Ar
+  - F2Ar
+  - F2IL
   layers:
   - Default
   - TransparentFX

@@ -8,16 +8,18 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
 {
     private Contador contador; //Recebe a instância da classe Contador.
     private IEnumerator f1_caixas;
+    private IEnumerator f2_sujeiras;
     private IEnumerator f4_filas; //Recebe a coroutine da tarefa principal da fase 4 (Operação de caixa).
     private IEnumerator f4_telefone; //Recebe a coroutine da tarefa secundária da fase 4 (Atender o telefone).
 
-    public static bool iniciandoCaixasT1 = false, iniciandoCaixasT2 = false, iniciandoNPC = false, iniciandoTel = false; //Indicam se as determinadas tarefas foram iniciadas.
+    public static bool iniciandoCaixasT1 = false, iniciandoCaixasT2 = false, sujandoF2 = false, iniciandoNPC = false, iniciandoTel = false; //Indicam se as determinadas tarefas foram iniciadas.
     public TMP_Text notificacaoUI; //Recebe o componente de texto onde são exibidas as notificações de tarefas.
 
     void Start()
     {
         contador = GetComponent<Contador>(); //Instanciando a classe Contador.
         f1_caixas = IniciarF1Caixas(2f);
+        f2_sujeiras = IniciarF2Sujeiras(7.5f);
         //Atribua as coroutines às suas respectivas funções aqui.
         f4_filas = IniciarF4Filas(5f); //Atribuindo a coroutine fase4_tarefaA à função correspondente, determinando o intervalo de tempo entre cada ciclo.
         f4_telefone = IniciarF4Tel(10f); //Atribuindo a coroutine fase4_tarefaB à função correspondente, determinando o intervalo de tempo entre cada ciclo.
@@ -39,7 +41,7 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
 
             if (contador.contando) //Verificando se o contador foi iniciado, em seguida iniciando as coroutines relacionadas a cada tarefa.
             {
-                //Inicie as coroutines da fase aqui.
+                StartCoroutine(f2_sujeiras);
             }
 
             Debug.Log(GerenciadorCenas.cenaAtual.name + ": Iniciando tarefas");
@@ -51,6 +53,7 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
             if (contador.contando) //Verificando se o contador foi iniciado, em seguida iniciando as coroutines relacionadas a cada tarefa.
             {
                 //Inicie as coroutines da fase aqui.
+                StartCoroutine(f2_sujeiras);
             }
 
             Debug.Log(GerenciadorCenas.cenaAtual.name + ": Iniciando tarefas");
@@ -101,6 +104,15 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
                 
                 break;
             }
+        }
+    }
+
+    IEnumerator IniciarF2Sujeiras(float espera) //Método relacionado à mecânica do telefone referente a fase 4, juntamente à lógica do intervalo de tempo entre cada ciclo da coroutine.
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(espera);
+            sujandoF2 = true;
         }
     }
 
