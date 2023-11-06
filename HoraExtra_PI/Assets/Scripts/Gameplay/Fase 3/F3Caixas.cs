@@ -5,10 +5,9 @@ using UnityEngine;
 public class F3Caixas : MonoBehaviour
 {
     public GameObject prefProduto;
-
     public bool interagindoCPlayer = false;
 
-    private void Update()
+    void Update()
     {
         if (interagindoCPlayer)
         {

@@ -9,10 +9,11 @@ public class F4Telefone : MonoBehaviour
 
     void Update()
     {
-        if (Tarefas.iniciandoTel)
+        if (Tarefas.iniciandoTelefone)
         {
             tocando = true;
-            Tarefas.iniciandoTel = false;
+            Tarefas.iniciandoTelefone = false;
+            Debug.Log("Telefone tocando");
         }
 
         while (tocando)
@@ -31,7 +32,7 @@ public class F4Telefone : MonoBehaviour
 
         while (tocando && Jogador.objetoProximo == gameObject.name)
         {
-            Debug.Log("F para interagir");
+            Debug.Log("C para interagir");
             AtenderTelefone();
             break;
         }
@@ -39,11 +40,11 @@ public class F4Telefone : MonoBehaviour
 
     void AtenderTelefone()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.C))
         {
             tocando = false;
             contagem = 0f;
-            Pontuacao.pontos += 25;
+            Pontuacao.pontos += 150;
             Debug.Log("Ligação atendida");
         }
     }

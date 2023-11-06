@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mecânicas, como movimentação, interação, etc.
 {
     //Gerais.
     [SerializeField]
-    private float vel = 5f,
-        energia,
-        taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
-    private bool movendo = false,
-        descansando = false,
-        correndo = false,
-        interagindo = false; //Variáveis utilizadas para verificação de determinadas ações do jogador.
+    private float vel = 5f, energia, taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
+    private bool movendo = false, descansando = false, correndo = false; //Variáveis utilizadas para verificar a movimentação do jogador.
     private Rigidbody2D jogRB; //Variável que recebe o componente Rigidbody2D, utilizado no sistema de movimentação de personagem.
     private Vector2 dir; //Recebe os valores de direção para qual o jogador pode se mover.
-
     public static string objetoProximo; //Variável utilizada para verificação do objeto no qual o jogador está colidindo no momento, servindo de base para o sistema de interação. Precisa ser pública e estática, para que possa ser chamada nas classes onde a verificação acontece.
+    public Image barraEnergia;
+    public TMP_Text energiaUI;
 
     //Interação Fase2.
     public bool segurandoItemLimpeza = false;
@@ -37,8 +36,13 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
     {
         Movimentacao(); //Executando o método de movimentação.
 
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.C))
+        {
             Interacao();
+        }
+
+        energiaUI.text = Mathf.FloorToInt(energia) + "/100";
+        barraEnergia.fillAmount = energia / 100;
     }
 
     void Movimentacao() //Método de movimentação de personagem, incluindo a lógica para corrida, consumo e regeneração de energia.
@@ -60,13 +64,13 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
             descansando = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && energia > 0) //Verifica se o jogador está pressionando a tecla 'Espaço' e se a energia está acima de 0, executando a lógica de corrida em seguida.
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.X)) && energia > 0) //Verifica se o jogador está pressionando a tecla 'Espaço' e se a energia está acima de 0, executando a lógica de corrida em seguida.
         {
             correndo = true; //Determina que o jogador está correndo.
             vel = 10f; //Recebe o dobro da velocidade de movimentação.
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) || energia <= 0) //Verifica se o jogador soltou a tecla 'Espaço' ou se a energia chegou à zero.
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.X) || energia <= 0) //Verifica se o jogador soltou a tecla 'Espaço' ou se a energia chegou à zero.
         {
             correndo = false; //Determina que o jogador parou de correr.
             vel = 5f; //A velocidade volta para seu valor padrão.
@@ -103,7 +107,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         {
             //Fase 2
             case "F2IL":
-            //Se está colidindo com o item de limpeza, e não está segurando nada...
+                //Se está colidindo com o item de limpeza, e não está segurando nada...
                 if (!segurandoProd && !segurandoItemLimpeza)
                 {
                     //Pegamos o item de limpeza
@@ -112,7 +116,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
                 }
                 break;
             case "F2Ar":
-            //Se estamos colidindo com alguma Armário de limpeza, e estamos com um item de limpeza...
+                //Se estamos colidindo com alguma Armário de limpeza, e estamos com um item de limpeza...
                 if (segurandoItemLimpeza)
                 {
                     //Verificamos se é o Armário certo do item, se sim, guardamos ele
@@ -136,12 +140,9 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
             case "Prateleiras":
                 if (segurandoProd)
                 {
-                    if (
-                        produto.gameObject.GetComponent<F3Produtos>().tipo
-                        == objInteragivel.GetComponent<F3Prateleiras>().tipo
-                    )
+                    if (produto.gameObject.GetComponent<F3Produtos>().tipo == objInteragivel.GetComponent<F3Prateleiras>().tipo)
                     {
-                        Pontuacao.pontos += 150;
+                        Pontuacao.pontos += 100;
                         objInteragivel.GetComponent<F3Prateleiras>().produto = produto;
                         segurandoProd = false;
                     }
@@ -155,19 +156,22 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         switch (col.gameObject.tag) //Verifica a tag do objeto em que o jogador está colidindo, mudando os valores das variáveis relacionadas ao sistema de interação.
         {
             case "NPC": //Tag utilizada nos GameObjects de personagens não jogáveis.
-                interagindo = true;
                 objetoProximo = col.gameObject.name; //Esta linha, assim como as demais iguais, atribui o valor da variável 'objetoProximo' como o nome do GameObject em que o jogador está interagindo no momento.
                 Debug.Log("objetoProximo = " + objetoProximo);
                 break;
             case "F4TA": //Tag utilizada nos GameObjects relacionados à tarefa principal da fase 4 (Caixas).
-                interagindo = true;
-                objetoProximo = col.gameObject.name;
-                Debug.Log("objetoProximo = " + objetoProximo);
+                if (!segurandoProd && !segurandoItemLimpeza)
+                {
+                    objetoProximo = col.gameObject.name;
+                    Debug.Log("objetoProximo = " + objetoProximo);
+                }
                 break;
             case "F4TB": //Tag utilizada no GameObject relacionado à tarefa secundária da fase 4 (Telefone).
-                interagindo = true;
-                objetoProximo = col.gameObject.name;
-                Debug.Log("objetoProximo = " + objetoProximo);
+                if (!segurandoProd && !segurandoItemLimpeza)
+                {
+                    objetoProximo = col.gameObject.name;
+                    Debug.Log("objetoProximo = " + objetoProximo);
+                }
                 break;
             case "F3Ca":
                 objetoProximo = "Caixa";
@@ -196,15 +200,12 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         switch (col.gameObject.tag) //Verifica se o jogador saiu da área de colisão do objeto de tag especificada.
         {
             case "NPC":
-                interagindo = false;
                 objetoProximo = null;
                 break;
             case "F4TA":
-                interagindo = false;
                 objetoProximo = null;
                 break;
             case "F4TB":
-                interagindo = false;
                 objetoProximo = null;
                 break;
             case "F3Ca":

@@ -24,7 +24,7 @@ public class Pontuacao : MonoBehaviour //Classe que gerencia o sistema de pontua
 
     void Update()
     {
-        pontuacaoUI.text = "Pontuação: " + pontos + "/" + meta; //Exibindo na tela o valor da pontuação e meta. 
+        pontuacaoUI.text = pontos + "/" + meta; //Exibindo na tela o valor da pontuação e meta. 
 
         if (!contador.contando) //Verificando se o contador está parado.
         {

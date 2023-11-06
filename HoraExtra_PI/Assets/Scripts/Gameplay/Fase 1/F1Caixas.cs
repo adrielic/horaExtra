@@ -5,26 +5,17 @@ using UnityEngine;
 
 public class F1Caixas : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D col)
+    void Start()
     {
-        if (col.gameObject.tag == "F1Ar")
+        if (gameObject.name.Contains("(T1)"))
         {
-            if (col.gameObject.name.Contains("(T1)"))
-            {
-                if (gameObject.name.Contains("(T1)"))
-                {
-                    Destroy(gameObject, 2);
-                }
-            }
-            else if (col.gameObject.name.Contains("(T2)"))
-            {
-                if (gameObject.name.Contains("(T2)"))
-                {
-                    Destroy(gameObject, 2);
-                }
-            }
-
-            F1GeradorCaixas.limite--;
+            F1GeradorCaixas.limiteT1++;
+            Debug.Log("limiteT1 = " + F1GeradorCaixas.limiteT1);
+        }
+        else
+        {
+            F1GeradorCaixas.limiteT2++;
+            Debug.Log("limiteT2 = " + F1GeradorCaixas.limiteT2);
         }
     }
 }

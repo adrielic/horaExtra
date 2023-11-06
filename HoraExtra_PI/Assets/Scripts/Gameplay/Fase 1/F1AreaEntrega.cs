@@ -11,32 +11,33 @@ public class F1AreaEntrega : MonoBehaviour
         {
             if (gameObject.name.Contains("(T1)"))
             {
-                if (col.gameObject.name.Contains("P(T1)"))
-                {
-                    Pontuacao.pontos += 10;
-                }
-                else if (col.gameObject.name.Contains("M(T1)"))
-                {
-                    Pontuacao.pontos += 15;
-                }
-                else if (col.gameObject.name.Contains("G(T1)"))
+                if (col.gameObject.name.Contains("(T1)"))
                 {
                     Pontuacao.pontos += 20;
+                    Destroy(col.gameObject, 1);
+                    F1GeradorCaixas.limiteT1--;
+                }
+                else
+                {
+                    Pontuacao.pontos -= 10;
+                    Destroy(col.gameObject, 1);
+                    F1GeradorCaixas.limiteT2--;
                 }
             }
             else if (gameObject.name.Contains("(T2)"))
             {
-                if (col.gameObject.name.Contains("P(T2)"))
-                {
-                    Pontuacao.pontos += 10;
-                }
-                else if (col.gameObject.name.Contains("M(T2)"))
-                {
-                    Pontuacao.pontos += 15;
-                }
-                else if (col.gameObject.name.Contains("G(T2)"))
+                if (col.gameObject.name.Contains("(T2)"))
                 {
                     Pontuacao.pontos += 20;
+                    Destroy(col.gameObject, 1);
+                    F1GeradorCaixas.caixasEntregues++;
+                    F1GeradorCaixas.limiteT2--;
+                }
+                else
+                {
+                    Pontuacao.pontos -= 10;
+                    Destroy(col.gameObject, 1);
+                    F1GeradorCaixas.limiteT1--;
                 }
             }
         }

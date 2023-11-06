@@ -63,9 +63,9 @@ public class F4Clientes : MonoBehaviour
 
     void AtenderFila()
     {
-        Debug.Log("F para interagir");
+        Debug.Log("C para interagir");
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.C))
         {
             if (F4Filas.fila1.Contains(gameObject))
             {
@@ -78,7 +78,7 @@ public class F4Clientes : MonoBehaviour
             }
 
             Sair();
-            Pontuacao.pontos += 50;
+            Pontuacao.pontos += 300;
             Debug.Log(gameObject.name + " atendido");
         }
     }

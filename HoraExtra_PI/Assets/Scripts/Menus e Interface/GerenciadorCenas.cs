@@ -12,10 +12,10 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
 
     public static string cenaAnterior; //Armazena o nome da cena atual, que é utilizada para que o jogo retorne a ela quando necessário.
     public static Scene cenaAtual; //Armazena a cena atual.
+    public GameObject objPausa; //Recebe o game object do painel de pausa.
     public GameObject objCC; //Recebe o game object Chave de Cenas.
     public ChaveCenas cc; //Recebe a instância da classe ChaveCenas.
     public TMP_Text dialogosUI; //Recebe o componente de texto onde são exibidos os diálogos na tela.
-    public GameObject painelPausa;
 
     void Awake()
     {
@@ -55,17 +55,17 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
             switch (cenaAtual.name) //Verificando qual fase está atualmente ativa, em seguida inserindo as linhas de diálogo à fila e armazenando a cena seguinte.
             {
                 case "Cena 1":
-                    dialogos.Enqueue("Isso");
-                    dialogos.Enqueue("É");
-                    dialogos.Enqueue("Um");
-                    dialogos.Enqueue("Teste");
+                    dialogos.Enqueue("Bem vindo ao Hora Extra.");
+                    dialogos.Enqueue("Este é apenas um protótipo e bastante coisa vai mudar.");
+                    dialogos.Enqueue("O jogo se passa em um supermercado e você deve realizar tarefas referentes à atividades de um funcionário de supermercado (duh).");
+                    dialogos.Enqueue("Você deve alcançar a pontuação mínima para avançar em cada fase. Conforme avança, a meta cresce, e as tarefas da fase anterior passam a se acumular junto à da fase atual. Você um tempo de 2~4 minutos para alcançar a meta. Boa sorte.");
                     proximaCena = "Cena 2";
                     break;
                 case "Cena 2":
-                    dialogos.Enqueue("Isso (2)");
-                    dialogos.Enqueue("É (2)");
-                    dialogos.Enqueue("Um (2)");
-                    dialogos.Enqueue("Teste (2)");
+                    dialogos.Enqueue("Na fase a seguir você está restrito ao depósito e deve empurrar as caixas para os locais corretos.");
+                    dialogos.Enqueue("Empurre as caixas marrons para o local vermelho na tela, e as caixas cinzas para o local verde.");
+                    dialogos.Enqueue("Tente não demorar demais, pois você tem um tempo para entregar ao local certo antes que os caminhões de estoque e delivery saiam.");
+                    dialogos.Enqueue("");
                     proximaCena = "Fase 1";
                     break;
                 case "Cena 3":
@@ -136,7 +136,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
-            painelPausa.SetActive(true);
+            objPausa.SetActive(true);
         }
 
         while (tipoCena == "Gameplay") //Rodando enquanto uma cena de gameplay está ativa.

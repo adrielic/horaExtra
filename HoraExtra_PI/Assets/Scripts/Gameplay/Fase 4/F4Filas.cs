@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class F4Filas : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class F4Filas : MonoBehaviour
     public static Queue<GameObject> fila1 = new Queue<GameObject>();
     public static Queue<GameObject> fila2 = new Queue<GameObject>();
     public static int numFila, falhas;
+    public TMP_Text falhasUI;
 
     void Start()
     {
@@ -16,16 +18,18 @@ public class F4Filas : MonoBehaviour
 
     void Update()
     {
-        if (Tarefas.iniciandoNPC)
+        if (Tarefas.iniciandoFilas)
         {
             GerarNPC();
-            Tarefas.iniciandoNPC = false;
+            Tarefas.iniciandoFilas = false;
         }
 
         if (falhas > 3)
         {
             Pontuacao.resultado = "Derrota";
         }
+
+        falhasUI.text = "" + falhas;
     }
 
     void GerarNPC()

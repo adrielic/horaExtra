@@ -5,10 +5,9 @@ using UnityEngine;
 public class F3Produtos : MonoBehaviour
 {
     public int tipo;
-
     private GameObject jogador;
 
-    private void Start()
+    void Start()
     {
         jogador = GameObject.Find("Marta");
 

@@ -5,6 +5,13 @@ using UnityEngine;
 public class F2Sujeira : MonoBehaviour
 {
     public string tipoDeUtencilio;
+    private IEnumerator perda;
+
+    void Start()
+    {
+        perda = PerdaPontos(1f);
+        StartCoroutine(perda);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,9 +20,19 @@ public class F2Sujeira : MonoBehaviour
         {
             if (collision.gameObject.name.Equals(tipoDeUtencilio))
             {
-                Destroy(this.gameObject);
+                StopCoroutine(perda);
                 Pontuacao.pontos += 50;
+                Destroy(this.gameObject);
             }
+        }
+    }
+
+    private IEnumerator PerdaPontos(float espera)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(espera);
+            Pontuacao.pontos--;
         }
     }
 }

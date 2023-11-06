@@ -1,61 +1,117 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class F1GeradorCaixas : MonoBehaviour
 {
-    private Vector2 posCaixas1, posCaixas2;
-    private float posC1X, posC1Y, posC2X, posC2Y;
+    public static int limiteT1, limiteT2, caixasEntregues;
+    public static bool caminhaoPresente = true;
+    public GameObject[] caixas, pontosSurgimento, areasEntrega;
 
-    public static int limite;
-    public GameObject[] caixas;
+    private IEnumerator caminhao;
 
     void Start()
     {
-        limite = 0;
+        caminhao = Caminhao(30f);
+        StartCoroutine(caminhao);
+        limiteT1 = 0;
+        limiteT2 = 0;
     }
-    
+
     void Update()
     {
-        if (Tarefas.iniciandoCaixasT1)
+        if (Tarefas.iniciandoCaixas)
         {
-            if (limite < 5)
-            {
-                InstanciarCaixas();
-                Tarefas.iniciandoCaixasT1 = false;
-            }
+            int rTipo = Random.Range(0, 2);
+            StartCoroutine(InstanciarCaixas(rTipo));
+            Tarefas.iniciandoCaixas = false;
         }
+    }
 
-        if (Tarefas.iniciandoCaixasT2)
+    IEnumerator InstanciarCaixas(int tipo)
+    {
+        int rNum = Random.Range(0, 3);
+
+        for (int i = 0; i < rNum; i++)
         {
-            if (limite < 5)
+            yield return new WaitForSeconds(1f);
+
+            if (tipo == 0)
             {
-                InstanciarCaixas();
-                Tarefas.iniciandoCaixasT2 = false;
+                if (limiteT1 < 5)
+                {
+                    Debug.Log("Gerando T1");
+                    GerarCaixaT1();
+                }
+                else
+                {
+                    if (limiteT2 < 5)
+                    {
+                        Debug.Log("T1 chegou ao limite, gerando T2");
+                        GerarCaixaT2();
+                    }
+                }
+            }
+            else
+            {
+                if (limiteT2 < 5)
+                {
+                    Debug.Log("Gerando T2");
+                    GerarCaixaT2();
+                }
+                else
+                {
+                    if (limiteT1 < 5)
+                    {
+                        Debug.Log("T2 chegou ao limite, gerando T1");
+                        GerarCaixaT1();
+                    }
+                }
             }
         }
     }
 
-    void InstanciarCaixas()
+    void GerarCaixaT1()
     {
-        posC1X = Random.Range(-3f, 0.5f);
-        posC1Y = Random.Range(-1.8f, -3f);
-        posC2X = Random.Range(3f, 7f);
-        posC2Y = Random.Range(-3f, 0.5f);
-        posCaixas1 = new Vector2(posC1X, posC1Y);
-        posCaixas2 = new Vector2(posC2X, posC2Y);
+        int rPrefab = Random.Range(0, 3);
+        Instantiate(caixas[rPrefab], pontosSurgimento[0].transform.position, Quaternion.identity);
+    }
 
-        int rPrefab = Random.Range(0, 6);
+    void GerarCaixaT2()
+    {
+        int rPrefab = Random.Range(3, 6);
+        Instantiate(caixas[rPrefab], new Vector2(pontosSurgimento[1].transform.position.x + 2, pontosSurgimento[1].transform.position.y), Quaternion.identity);
+    }
 
-        if (rPrefab == 0 || rPrefab == 1 || rPrefab == 2)
+    IEnumerator Caminhao(float espera)
+    {
+        while (true)
         {
-            Instantiate(caixas[rPrefab], posCaixas1, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(caixas[rPrefab], posCaixas2, Quaternion.identity);
-        }
+            yield return new WaitForSeconds(espera);
 
-        limite++;
+            if (caminhaoPresente)
+            {
+                if (caixasEntregues < 2)
+                {
+                    Pontuacao.pontos -= 50;
+                }
+                else if (caixasEntregues >= 2)
+                {
+                    Pontuacao.pontos += 50;
+                }
+
+                Debug.Log("Caminhão indo embora");
+                areasEntrega[1].SetActive(false);
+                caminhaoPresente = false;
+            }
+            else
+            {
+                Debug.Log("Caminhao chegou");
+                areasEntrega[1].SetActive(true);
+                caminhaoPresente = true;
+            }
+        }
     }
 }

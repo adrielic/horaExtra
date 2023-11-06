@@ -7,20 +7,20 @@ public class F2Spawner : MonoBehaviour
     public GameObject[] _prefabSujeira = new GameObject[3];
     public GameObject[] _prefAreas = new GameObject[3];
 
-    public int numMaxSujeiras;
+    private int rNumSujeiras;
 
     void Update()
     {
-        if (Tarefas.sujandoF2)
+        if (Tarefas.iniciandoSujeira)
             Spawn();
     }
 
     public void Spawn()
     {
-        int area = 0,
-            sujeira = 0;
+        int area = 0, sujeira = 0;
+        rNumSujeiras = Random.Range(0, 3);
 
-        for (int i = 0; i < numMaxSujeiras; i++) //Fazendo aparecer um número x de sujeiras, definidos no inspetor da unity
+        for (int i = 0; i < rNumSujeiras; i++) //Fazendo aparecer um número x de sujeiras, definidos no inspetor da unity
         {
             sujeira = Random.Range(0, 3); //Escolhendo uma sujeira aleatória do vetor
             area = Random.Range(0, 3); //Escolhendo uma área aleatória do vetor
@@ -39,7 +39,7 @@ public class F2Spawner : MonoBehaviour
             //Definindo a posição final da sujeira
 
             Instantiate(_prefabSujeira[sujeira], new Vector2(posX, posY), Quaternion.identity);
-            Tarefas.sujandoF2 = false;
+            Tarefas.iniciandoSujeira = false;
             //Instanciando a sujeira
         }
     }

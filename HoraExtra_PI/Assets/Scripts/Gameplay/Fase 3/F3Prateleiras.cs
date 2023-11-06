@@ -5,10 +5,9 @@ using UnityEngine;
 public class F3Prateleiras : MonoBehaviour
 {
     public int tipo;
-
     public GameObject produto;
 
-    private void Update()
+    void Update()
     {
         if (produto != null)
         {

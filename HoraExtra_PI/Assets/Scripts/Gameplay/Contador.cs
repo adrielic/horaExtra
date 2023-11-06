@@ -10,6 +10,7 @@ public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio 
 
     public bool contando = false, tempoExtra = false; //Indicam se o contador e hora extra foram iniciados, respectivamente.
     public TMP_Text contadorUI; //Recebe o componente de texto onde é exibido o contador na tela.
+    public Animator relogioAnim;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio 
                     tempoExtra = true; //Iniciando o período de hora extra.
                     rNum = 0; //Retornando o valor de rNum para 0, evitando que esta lógica rode em looping.
                     IniciarContagem(); //Reiniciando a contagem.
+                    relogioAnim.SetTrigger("HoraExtra");
                     Debug.Log("tempoExtra = " + tempoExtra);
                 }
                 else //Verificando os outros valores e rodando a lógica que para o contador.
