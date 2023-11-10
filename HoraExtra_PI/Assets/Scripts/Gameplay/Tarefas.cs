@@ -115,7 +115,6 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
         while (true)
         {
             yield return new WaitForSeconds(espera);
-            iniciandoProdutos = true;
         }
     }
 

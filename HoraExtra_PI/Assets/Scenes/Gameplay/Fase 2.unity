@@ -1965,6 +1965,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1591604234222405699, guid: deb0ab88c6d4b11438b0f4dcb3ff404b, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2319340039720737537, guid: deb0ab88c6d4b11438b0f4dcb3ff404b, type: 3}
       propertyPath: m_Name
       value: Interface (Gameplay)

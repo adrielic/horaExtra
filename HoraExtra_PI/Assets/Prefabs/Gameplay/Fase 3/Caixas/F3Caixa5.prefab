@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefProduto: {fileID: 3152383499664843898, guid: c313a0caaa9b1584e9286a4214a5df20, type: 3}
   interagindoCPlayer: 0
+  numTarefas: 0
 --- !u!58 &5036656185153853584
 CircleCollider2D:
   m_ObjectHideFlags: 0

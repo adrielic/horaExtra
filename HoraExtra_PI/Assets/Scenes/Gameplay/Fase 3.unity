@@ -1452,6 +1452,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1245823484 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 746438934543618377, guid: deb0ab88c6d4b11438b0f4dcb3ff404b, type: 3}
+  m_PrefabInstance: {fileID: 8840040623659402241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1414429355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2066,7 +2071,7 @@ PrefabInstance:
     - target: {fileID: 7770889956743692310, guid: 2d73edb4e4d5699498286d23869b2ea6, type: 3}
       propertyPath: relogioAnim
       value: 
-      objectReference: {fileID: 8840040623659402244}
+      objectReference: {fileID: 8840040623659402243}
     - target: {fileID: 8983340466639751303, guid: 2d73edb4e4d5699498286d23869b2ea6, type: 3}
       propertyPath: pontuacaoUI
       value: 
@@ -2103,7 +2108,7 @@ PrefabInstance:
     - target: {fileID: 607441129914471892, guid: e696d71c10446dd40b26bad06601c932, type: 3}
       propertyPath: objPausa
       value: 
-      objectReference: {fileID: 8840040623659402243}
+      objectReference: {fileID: 1245823484}
     - target: {fileID: 607441129914471892, guid: e696d71c10446dd40b26bad06601c932, type: 3}
       propertyPath: painelPausa
       value: 
@@ -2350,12 +2355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8840040623659402243 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 746438934543618377, guid: deb0ab88c6d4b11438b0f4dcb3ff404b, type: 3}
-  m_PrefabInstance: {fileID: 8840040623659402241}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8840040623659402244 stripped
+--- !u!95 &8840040623659402243 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5104532851922549045, guid: deb0ab88c6d4b11438b0f4dcb3ff404b, type: 3}
   m_PrefabInstance: {fileID: 8840040623659402241}
