@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class F4Telefone : MonoBehaviour
 {
-    [SerializeField] private float contagem, tempoLimite = 5f;
+    [SerializeField] private float contagem, tempoLimite = 10f;
     private bool tocando = false;
 
     void Update()
@@ -18,12 +18,16 @@ public class F4Telefone : MonoBehaviour
 
         while (tocando)
         {
+            GerenciadorInterface.instancia.txtNotificacao.text = "O telefone está tocando.";
             contagem += Time.deltaTime;
 
             if (contagem >= tempoLimite)
             {
                 tocando = false;
                 contagem = 0f;
+                Pontuacao.pontos -= 150;
+                GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("-Dinheiro");
+                GerenciadorInterface.instancia.txtNotificacao.text = "Você perdeu uma ligação.";
                 Debug.Log("Ligação perdida");
             }
 
@@ -33,6 +37,8 @@ public class F4Telefone : MonoBehaviour
         while (tocando && Jogador.objetoProximo == gameObject.name)
         {
             Debug.Log("C para interagir");
+            GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", true);
+            GerenciadorInterface.instancia.txtInteracao.text = "Atender";
             AtenderTelefone();
             break;
         }
@@ -45,6 +51,8 @@ public class F4Telefone : MonoBehaviour
             tocando = false;
             contagem = 0f;
             Pontuacao.pontos += 150;
+            GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
+            GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", false);
             Debug.Log("Ligação atendida");
         }
     }

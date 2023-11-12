@@ -5,12 +5,11 @@ using UnityEngine;
 public class F2Sujeira : MonoBehaviour
 {
     public string tipoDeUtencilio;
-    private IEnumerator perda;
 
     void Start()
     {
-        perda = PerdaPontos(1f);
-        StartCoroutine(perda);
+        F2Spawner.qntdSujeiras++;
+        Debug.Log("qntdSujeiras = " + F2Spawner.qntdSujeiras);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,19 +19,11 @@ public class F2Sujeira : MonoBehaviour
         {
             if (collision.gameObject.name.Equals(tipoDeUtencilio))
             {
-                StopCoroutine(perda);
                 Pontuacao.pontos += 50;
+                GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
+                F2Spawner.qntdSujeiras--;
                 Destroy(this.gameObject);
             }
-        }
-    }
-
-    private IEnumerator PerdaPontos(float espera)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(espera);
-            Pontuacao.pontos--;
         }
     }
 }

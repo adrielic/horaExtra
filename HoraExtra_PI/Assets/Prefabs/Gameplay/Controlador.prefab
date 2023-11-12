@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7770889956743692310}
   - component: {fileID: 8983340466639751303}
   - component: {fileID: 115240968887649831}
+  - component: {fileID: 3586944130977454690}
   m_Layer: 0
   m_Name: Controlador
   m_TagString: Untagged
@@ -47,9 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempo: 0
-  tempoTotal: 480
+  tempoTotal: 240
+  rNum: 0
   contando: 0
-  contadorUI: {fileID: 0}
+  tempoExtra: 0
 --- !u!114 &8983340466639751303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,4 +76,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0df42c008fe7a041b3f9111d54981be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pontuacaoUI: {fileID: 0}
+--- !u!114 &3586944130977454690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527978858838948147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee4a9ce83526f8419223e14fd85c5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

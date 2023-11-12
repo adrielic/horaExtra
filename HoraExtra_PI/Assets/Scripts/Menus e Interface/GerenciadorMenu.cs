@@ -8,6 +8,11 @@ public class GerenciadorMenu : MonoBehaviour //Classe que faz o gerenciamento do
     public GameObject objCCM; //Recebe o game object Chave de Cenas.
     public ChaveCenasMenu ccm; //Recebe a instância da classe ChaveCenas.
 
+    void Start()
+    {
+        Cursor.visible = true;
+    }
+
     public void Jogar()
     {
         ccm.IniciarCena("Cena 1");

@@ -14,75 +14,62 @@ public class F1GeradorCaixas : MonoBehaviour
 
     void Start()
     {
-        caminhao = Caminhao(30f);
-        StartCoroutine(caminhao);
         limiteT1 = 0;
         limiteT2 = 0;
+        caixasEntregues = 0;
+        caminhao = Caminhao(29.8f); //O número é quebrado, para que a verificação de pontos do caminhão aconteça antes do timer principal da fase parar aos 4 min.
+        StartCoroutine(caminhao);
+
+        if (GerenciadorCenas.cenaAtual.name == "Fase 1")
+        {
+            StartCoroutine(GerarCaixaT2(2f));
+        }
+        else
+        {
+            areasEntrega[1].SetActive(false);
+            caminhaoPresente = false;
+        }
     }
 
     void Update()
     {
         if (Tarefas.iniciandoCaixas)
         {
-            int rTipo = Random.Range(0, 2);
-            StartCoroutine(InstanciarCaixas(rTipo));
+            StartCoroutine(GerarCaixaT1(1f, Random.Range(0, 2)));
             Tarefas.iniciandoCaixas = false;
         }
     }
 
-    IEnumerator InstanciarCaixas(int tipo)
+    IEnumerator GerarCaixaT1(float espera, int tipo)
     {
-        int rNum = Random.Range(0, 3);
-
-        for (int i = 0; i < rNum; i++)
+        for (int i = 0; i < Random.Range(0, 3); i++)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(espera);
 
-            if (tipo == 0)
+            if (tipo == 1)
             {
                 if (limiteT1 < 5)
                 {
+                    Instantiate(caixas[Random.Range(0, 3)], pontosSurgimento[0].transform.position, Quaternion.identity);
+                    GerenciadorInterface.instancia.txtNotificacao.text = "Há novas mercadorias aguardando o transporte.";
                     Debug.Log("Gerando T1");
-                    GerarCaixaT1();
-                }
-                else
-                {
-                    if (limiteT2 < 5)
-                    {
-                        Debug.Log("T1 chegou ao limite, gerando T2");
-                        GerarCaixaT2();
-                    }
-                }
-            }
-            else
-            {
-                if (limiteT2 < 5)
-                {
-                    Debug.Log("Gerando T2");
-                    GerarCaixaT2();
-                }
-                else
-                {
-                    if (limiteT1 < 5)
-                    {
-                        Debug.Log("T2 chegou ao limite, gerando T1");
-                        GerarCaixaT1();
-                    }
                 }
             }
         }
     }
 
-    void GerarCaixaT1()
+    IEnumerator GerarCaixaT2(float espera)
     {
-        int rPrefab = Random.Range(0, 3);
-        Instantiate(caixas[rPrefab], pontosSurgimento[0].transform.position, Quaternion.identity);
-    }
+        for (int i = 0; i < Random.Range(2, 6); i++)
+        {
+            yield return new WaitForSeconds(espera);
 
-    void GerarCaixaT2()
-    {
-        int rPrefab = Random.Range(3, 6);
-        Instantiate(caixas[rPrefab], new Vector2(pontosSurgimento[1].transform.position.x + 2, pontosSurgimento[1].transform.position.y), Quaternion.identity);
+            if (limiteT2 < 5)
+            {
+                Instantiate(caixas[Random.Range(3, 6)], new Vector2(pontosSurgimento[1].transform.position.x + 2, pontosSurgimento[1].transform.position.y), Quaternion.identity);
+                Debug.Log("Gerando T2");
+            }
+        }
     }
 
     IEnumerator Caminhao(float espera)
@@ -95,22 +82,28 @@ public class F1GeradorCaixas : MonoBehaviour
             {
                 if (caixasEntregues < 2)
                 {
-                    Pontuacao.pontos -= 50;
+                    Pontuacao.pontos -= 40 - caixasEntregues * 20;
+                    GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("-Dinheiro");
                 }
                 else if (caixasEntregues >= 2)
                 {
-                    Pontuacao.pontos += 50;
+                    Pontuacao.pontos += 20 * caixasEntregues;
+                    GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
                 }
 
-                Debug.Log("Caminhão indo embora");
                 areasEntrega[1].SetActive(false);
                 caminhaoPresente = false;
+                GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão está indo embora.";
+                Debug.Log("Caminhão indo embora");
             }
             else
             {
-                Debug.Log("Caminhao chegou");
+                StartCoroutine(GerarCaixaT2(2f));
                 areasEntrega[1].SetActive(true);
                 caminhaoPresente = true;
+                caixasEntregues = 0;
+                GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão está aguardando para entrega.";
+                Debug.Log("Caminhao chegou");
             }
         }
     }

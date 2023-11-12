@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Pontuacao : MonoBehaviour //Classe que gerencia o sistema de pontuação, meta, armazena os seus valores e determina o resultado de cada fase jogada.
 {
@@ -10,7 +9,6 @@ public class Pontuacao : MonoBehaviour //Classe que gerencia o sistema de pontua
 
     public static int pontos, meta; //Recebem os valores de pontuação e meta de cada fase, respectivamente.
     public static string resultado; //Recebe o resultado da fase, determinando se o jogador venceu ou perdeu.
-    public TMP_Text pontuacaoUI; //Recebe o componente de texto onde é exibida a pontuação na tela.
 
     void Start()
     {
@@ -24,7 +22,7 @@ public class Pontuacao : MonoBehaviour //Classe que gerencia o sistema de pontua
 
     void Update()
     {
-        pontuacaoUI.text = pontos + "/" + meta; //Exibindo na tela o valor da pontuação e meta. 
+        GerenciadorInterface.instancia.txtPontuacao.text = pontos + "/" + meta; //Exibindo na tela o valor da pontuação e meta. 
 
         if (!contador.contando) //Verificando se o contador está parado.
         {
@@ -41,7 +39,11 @@ public class Pontuacao : MonoBehaviour //Classe que gerencia o sistema de pontua
         if (contador.tempoExtra) //Verificando se a hora extra foi iniciada.
         {
             meta = novaMeta; //Atribuindo a meta atual à nova meta.
-            Debug.Log("meta = " + meta);
+        }
+
+        if (pontos < 0)
+        {
+            pontos = 0;
         }
     }
 }

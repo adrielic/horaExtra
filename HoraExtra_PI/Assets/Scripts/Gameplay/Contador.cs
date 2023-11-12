@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio que contabiliza o tempo de cada fase.
 {
@@ -9,8 +8,6 @@ public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio 
     public int rNum; //Recebe um número aleatório que determina se a hora extra deve ser ativada.
 
     public bool contando = false, tempoExtra = false; //Indicam se o contador e hora extra foram iniciados, respectivamente.
-    public TMP_Text contadorUI; //Recebe o componente de texto onde é exibido o contador na tela.
-    public Animator relogioAnim;
 
     void Awake()
     {
@@ -31,7 +28,8 @@ public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio 
                     tempoExtra = true; //Iniciando o período de hora extra.
                     rNum = 0; //Retornando o valor de rNum para 0, evitando que esta lógica rode em looping.
                     IniciarContagem(); //Reiniciando a contagem.
-                    relogioAnim.SetTrigger("HoraExtra");
+                    GerenciadorInterface.instancia.imgRelogio.GetComponent<Animator>().SetTrigger("HoraExtra");
+                    GerenciadorInterface.instancia.txtNotificacao.text = "HORA EXTRA!";
                     Debug.Log("tempoExtra = " + tempoExtra);
                 }
                 else //Verificando os outros valores e rodando a lógica que para o contador.
@@ -73,6 +71,6 @@ public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio 
         float minutos = Mathf.FloorToInt(tempo / 60); //Atribuindo o valor da variável tempo dividido por 60 convertido para int à minutos.
         float segundos = Mathf.FloorToInt(tempo % 60); //Atribuindo o resto do valor da variável tempo dividido por 60 convertido para int à segundos.
         string hora = string.Format("{0:00}:{1:00}", minutos, segundos); //Formatando os valores para o formato de string, de modo que a exibição seja no formato 00:00.
-        contadorUI.text = hora; //Atribuindo o texto do contador ao valor do tempo convertido.
+        GerenciadorInterface.instancia.txtContador.text = hora; //Atribuindo o texto do contador ao valor do tempo convertido.
     }
 }

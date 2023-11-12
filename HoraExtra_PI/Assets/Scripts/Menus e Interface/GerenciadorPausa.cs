@@ -17,12 +17,14 @@ public class GerenciadorPausa : MonoBehaviour
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
+        GerenciadorCenas.jogoPausado = false;
         Debug.Log("Continuando " + GerenciadorCenas.cenaAnterior);
     }
 
     public void RetornarMenu()
     {
         Time.timeScale = 1;
+        GerenciadorCenas.jogoPausado = false;
         cc.IniciarCena("Menu Principal");
         Debug.Log("Retornando ao menu");
     }

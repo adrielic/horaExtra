@@ -5,7 +5,7 @@ using UnityEngine;
 public class F4Clientes : MonoBehaviour
 {
     private Rigidbody2D npcRB;
-    private float contagem, tempoLimite = 10f;
+    private float contagem, tempoLimite = 15f;
     private bool noCaixa = false;
     private string caixa;
 
@@ -31,6 +31,7 @@ public class F4Clientes : MonoBehaviour
     {
         while (noCaixa)
         {
+            GerenciadorInterface.instancia.txtNotificacao.text = "Há um novo cliente na fila.";
             contagem += Time.deltaTime;
 
             if (contagem >= tempoLimite)
@@ -46,6 +47,7 @@ public class F4Clientes : MonoBehaviour
                     F4Filas.falhas++;
                 }
 
+                GerenciadorInterface.instancia.txtNotificacao.text = "Um cliente foi embora furioso.";
                 Debug.Log(gameObject.name + " saiu da fila");
                 Debug.Log("falhas = " + F4Filas.falhas);
                 Sair();
@@ -57,6 +59,8 @@ public class F4Clientes : MonoBehaviour
         while (noCaixa && Jogador.objetoProximo == caixa)
         {
             AtenderFila();
+            GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", true);
+            GerenciadorInterface.instancia.txtInteracao.text = "Passar compra";
             break;
         }
     }
@@ -78,7 +82,8 @@ public class F4Clientes : MonoBehaviour
             }
 
             Sair();
-            Pontuacao.pontos += 300;
+            Pontuacao.pontos += 150;
+            GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
             Debug.Log(gameObject.name + " atendido");
         }
     }

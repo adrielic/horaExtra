@@ -14,12 +14,14 @@ public class F1AreaEntrega : MonoBehaviour
                 if (col.gameObject.name.Contains("(T1)"))
                 {
                     Pontuacao.pontos += 20;
+                    GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
                     Destroy(col.gameObject, 1);
                     F1GeradorCaixas.limiteT1--;
                 }
                 else
                 {
-                    Pontuacao.pontos -= 10;
+                    Pontuacao.pontos -= 20;
+                    GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("-Dinheiro");
                     Destroy(col.gameObject, 1);
                     F1GeradorCaixas.limiteT2--;
                 }
@@ -28,14 +30,14 @@ public class F1AreaEntrega : MonoBehaviour
             {
                 if (col.gameObject.name.Contains("(T2)"))
                 {
-                    Pontuacao.pontos += 20;
                     Destroy(col.gameObject, 1);
                     F1GeradorCaixas.caixasEntregues++;
                     F1GeradorCaixas.limiteT2--;
                 }
                 else
                 {
-                    Pontuacao.pontos -= 10;
+                    Pontuacao.pontos -= 20;
+                    GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("-Dinheiro");
                     Destroy(col.gameObject, 1);
                     F1GeradorCaixas.limiteT1--;
                 }
