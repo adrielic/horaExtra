@@ -5,7 +5,7 @@ using UnityEngine;
 public class F3Prateleiras : MonoBehaviour
 {
     public int tipo;
-    public GameObject produto;
+    [HideInInspector] public GameObject produto;
 
     void Update()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class F3Caixas : MonoBehaviour
 {
-    public GameObject prefProduto;
+    public GameObject[] prefProduto;
     public int qntdProdutos;
     public bool criandoProdutos = false, interagindoCPlayer = false;
 
@@ -46,7 +46,8 @@ public class F3Caixas : MonoBehaviour
 
         if (interagindoCPlayer)
         {
-            Jogador.produto = Instantiate(prefProduto);
+            int prod = Random.Range(0, 3);
+            Jogador.produto = Instantiate(prefProduto[prod]);
             qntdProdutos--;
             interagindoCPlayer = false;
         }
