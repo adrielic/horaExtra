@@ -147,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.7}
-  m_Size: {x: 1, y: 1.25}
+  m_Offset: {x: 0, y: -0.7472477}
+  m_Size: {x: 1, y: 1.3616766}
   m_Direction: 0
 --- !u!114 &-8186043496791557128
 MonoBehaviour:
@@ -162,11 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd48d01dd5017844a09e1006f63d742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 5
-  energia: 0
-  taxaConsumo: 10
-  barraEnergia: {fileID: 0}
-  energiaUI: {fileID: 0}
   segurandoItemLimpeza: 0
   ItemLimpeza: {fileID: 0}
 --- !u!95 &-5405649153362691660

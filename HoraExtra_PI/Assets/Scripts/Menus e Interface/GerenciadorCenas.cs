@@ -29,20 +29,20 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
             switch (cenaAtual.name) //Verificando qual fase está atualmente ativa, em seguida determinando o valor da meta de pontuação de cada fase e armazenando a cena seguinte.
             {
                 case "Fase 1":
-                    Pontuacao.meta = 500;
+                    Pontuacao.meta = 400;
                     proximaCena = "Cena 3";
                     break;
                 case "Fase 2":
-                    Pontuacao.meta = 1000;
-                    proximaCena = "Cena 4";
+                    Pontuacao.meta = 800;
+                    proximaCena = "Cena 5";
                     break;
                 case "Fase 3":
-                    Pontuacao.meta = 1500;
-                    proximaCena = "Cena 6";
+                    Pontuacao.meta = 1200;
+                    proximaCena = "Cena 8";
                     break;
                 case "Fase 4":
-                    Pontuacao.meta = 2000;
-                    proximaCena = "Cena 9";
+                    Pontuacao.meta = 1600;
+                    proximaCena = "Cena 12";
                     break;
             }
         }
@@ -53,70 +53,181 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
             switch (cenaAtual.name) //Verificando qual fase está atualmente ativa, em seguida inserindo as linhas de diálogo à fila e armazenando a cena seguinte.
             {
                 case "Cena 1":
-                    dialogos.Enqueue("Bem vindo ao Hora Extra.");
-                    dialogos.Enqueue("Este é apenas um protótipo e bastante coisa vai mudar.");
-                    dialogos.Enqueue("O jogo se passa em um supermercado e você deve realizar tarefas referentes às atividades de um funcionário de supermercado (duh).");
-                    dialogos.Enqueue("Você deve alcançar a pontuação mínima para avançar em cada fase. Conforme avança, a meta cresce, e as tarefas da fase anterior passam a se acumular junto à da fase atual. Você um tempo de 4 minutos para alcançar a meta.");
+                    dialogos.Enqueue("Chefe: Você é a recém-contratada não é? Como é o seu nome mesmo?");
+                    dialogos.Enqueue("Emily: Sou a Emily, senhor.");
+                    dialogos.Enqueue("Chefe: O QUE VOCÊ PENSA QUE ESTÁ FAZENDO, EMILY?!");
+                    dialogos.Enqueue("Emily: T-trabalhando senhor. Quer dizer, acabei de chegar.");
+                    dialogos.Enqueue("Chefe: Você vai trabalhar no depósito hoje. Precisamos de gente para descarregar umas mercadorias que chegaram ontem. Você tem trabalho a fazer lá.");
+                    dialogos.Enqueue("Emily: Mas senhor, eu nã-");
+                    dialogos.Enqueue("Chefe: Sem ''mas'', você acabou de chegar e tá querendo decidir alguma coisa?");
+                    dialogos.Enqueue("Chefe: Coloque isso na sua cabeça: EU digo o que você deve ou não fazer.");
+                    dialogos.Enqueue("Emily: S-sim, senhor. Estou indo.");
                     proximaCena = "Cena 2";
                     break;
                 case "Cena 2":
-                    dialogos.Enqueue("Na fase a seguir você está restrito ao depósito e deve empurrar as caixas para os locais corretos.");
-                    dialogos.Enqueue("Empurre as caixas marrons para o círculo azul na tela, e as caixas cinzas para o círculo verde.");
-                    dialogos.Enqueue("Empurrar caixas para o local errado te fará perder pontos, além de destruir a caixa. Tome cuidado.");
-                    dialogos.Enqueue("Após certo tempo, o círculo verde aparece e desaparece periodicamente (simulando a saída/chegada do caminhão de delivery), e se você não tiver entregue pelo menos duas caixas nele, perderá pontos. Caso tenha feito, ganhará pontos referente à quantidade de caixas entregues, quando ele sair.");
-                    dialogos.Enqueue("Boa sorte.");
+                    dialogos.Enqueue("David: Ah, você deve ser a novata, deu pra ouvir os gritos.");
+                    dialogos.Enqueue("David: Se acostume, é como as coisas funcionam por aqui. Prazer, David.");
+                    dialogos.Enqueue("David: Pelo visto vou ter que brincar de ser professor. Que saco.");
+                    dialogos.Enqueue("David: Vamos lá. Tá vendo aquele caminhão azul? Ele traz as mercadorias que ficamos encarregados de preparar para que sejam dispostas no pátio.");
+                    dialogos.Enqueue("David: Há também os produtos que vem daquela esteira, preparados serem entregues nas casas dos nossos clientes ao longo do dia, através daquele outro caminhão. Ele obviamente não fica aqui para sempre, então quando ele estiver, lembre-se de entregar pelo menos duas caixas, ou saímos no prejuízo.");
+                    dialogos.Enqueue("Emily: Ok, acho que entendi. Empurrar as caixas marrons do caminhão A ao local A. Empurrar as caixas cinzas do local B ao caminhão B. Parece simples.");
+                    dialogos.Enqueue("David: É simples. Até as suas costas começarem a reclamar. Hahaha.");
+                    dialogos.Enqueue("David: Uma última coisa.");
+                    dialogos.Enqueue("David: Você deve ter percebido que estamos em falta de pessoal por aqui. Isso é porque o nosso ''bom'' chefinho decidiu transferir alguns dos nossos para outra filial contra a vontade deles. Disse que ''não estavam dando duro o suficiente''.");
+                    dialogos.Enqueue("David: *Suspiro*");
+                    dialogos.Enqueue("David: Então, ao menos que queira acabar como eles, sugiro que dê o melhor de si.");
+                    dialogos.Enqueue("Emily: Certo, obrigada. Ao trabalho, então.");
                     proximaCena = "Fase 1";
                     break;
                 case "Cena 3":
-                    dialogos.Enqueue("Parabéns.");
-                    dialogos.Enqueue("De agora em diante há uma nova mecânica chamada 'Hora Extra'. Com isso, as duas próximas fases, terão uma chance de ter a Hora Extra ativada.");
-                    dialogos.Enqueue("Durante o período de Hora Extra, a meta para avançar de fase é dobrada, junto com o acréscimo de 1 minuto no tempo da fase. A Hora Extra é aleatória, então nem sempre as coisas podem sair como o esperado.");
-                    dialogos.Enqueue("Na fase a seguir você pode sair do depósito, agora você também é responsável pela limpeza. Lembre-se, as tarefas no depósito ainda estarão disponíveis, e possuem as mesmas regras.");
-                    dialogos.Enqueue("Na sala abaixo do depósito na tela, se encontram os equipamentos de limpeza em diferentes cores. As sujeiras surgirão no corredor do supermercado, e você deve estar segurando o equipamento cujo a cor é referente à sujeira. Para limpá-la basta andar por cima dela.");
-                    dialogos.Enqueue("Evite deixar os corredores sujos por muito tempo, pois com mais de 5 sujeiras, você começará a perder pontos. Além disso, você não conseguirá interagir com outros objetos ou equipamentos enquanto estiver segurando um item, como o equipamento de limpeza. Guarde-o no seu local de origem antes.");
-                    dialogos.Enqueue("Começando.");
-                    proximaCena = "Fase 2";
+                    dialogos.Enqueue("Emily: Droga, ele não mentiu, minha coluna tá começando a doer.");
+                    dialogos.Enqueue("Emily: *Ai*");
+                    dialogos.Enqueue("Emily: Bem que hoje, depois de três dias trabalhando aqui, eu poderia finalmente operar o caixa, ficar sentada um pouco. Não aguento mais empurrar caixas.");
+                    proximaCena = "Cena 4";
                     break;
                 case "Cena 4":
-                    dialogos.Enqueue("Muito bem.");
-                    dialogos.Enqueue("De agora em diante as coisas começam a complicar, uma nova tarefa lhe aguarda.");
-                    proximaCena = "Cena 5";
+                    dialogos.Enqueue("David: Espero que esteja pronta para mais trabalho duro. Embora, pela sua cara, a dorzinha nas costas já começou a cobrar.");
+                    dialogos.Enqueue("David: Bem, paciência.");
+                    dialogos.Enqueue("David: Antes de você chegar, já me encarregaram de explicar o que você vai fazer hoje. Aposto que você vai ''adorar''. Hahaha.");
+                    dialogos.Enqueue("David: Hoje você fica responsável pela limpeza.");
+                    dialogos.Enqueue("David: A Marta geralmente faz isso, mas tá de atestado, e não tenha raiva da moça, foi um sacrifício pra coitada conseguir esses dias de ''folga''.");
+                    dialogos.Enqueue("David: Além disso, o chefe disse que já era a hora de você ''prestar para mais de uma coisa nessa empresa''.");
+                    dialogos.Enqueue("Emily: *Grr*");
+                    dialogos.Enqueue("David: O quê? Não me olhe assim. Não fui eu que falei.");
+                    dialogos.Enqueue("David: A propósito, vamos logo com isso, eu não vejo a hora de ir logo pra casa.");
+                    dialogos.Enqueue("David: Como pode ver, os clientes e outros funcionários espalham todo tipo de sujeira por aqui.");
+                    dialogos.Enqueue("David: Líquidos derramados, vidros quebrados, sujeira dos sapatos... sério, eu não sei como podem ser tão desastrados.");
+                    dialogos.Enqueue("David: Lembre-se de usar os instrumentos de limpeza corretos para cada tipo de sujeira. A vassoura para cacos de vidro, o esfregão para marcas de sapato e o rodo para líquidos. Tente não deixar muita sujeira acumulada, pois isso irá te custar caro.");
+                    dialogos.Enqueue("David: Ah, e sinto muito, mas ainda é preciso que você continue o trabalho no depósito enquanto isso. E torça para que o chefinho não mande fazer hora extra hoje, você não vai gostar nadinha disso.");
+                    dialogos.Enqueue("Emily: O QUÊ?!");
+                    dialogos.Enqueue("David: Boa sorte, colega.");
+                    proximaCena = "Fase 2";
                     break;
                 case "Cena 5":
-                    dialogos.Enqueue("Na próxima fase, além das tarefas anteriores, você deve organizar as prateleiras.");
-                    dialogos.Enqueue("Haverão caixas de várias cores espalhadas pelos corredores. Em cada uma delas você pode pegar um produto para colocar nas prateleiras (os retângulos grandes) de mesma cor.");
-                    dialogos.Enqueue("Preste atenção. Colocar produtos nas prateleiras erradas lhe fará perder pontos.");
-                    dialogos.Enqueue("Mais produtos surgirão nas caixas com o tempo, e lembre-se de sempre estar checando as caixas e realizando a reposição. Isso dá bastante ponto.");
-                    proximaCena = "Fase 3";
+                    dialogos.Enqueue("Emily: Eu não fazia ideia de que seria assim. Eu deveria estar trabalhando no caixa, poxa. Ao invés disso, quase duas semanas tendo que fazer funções de outros funcionários, por uma decisão do próprio chefe em transferir eles.");
+                    dialogos.Enqueue("Emily: Será que todos os empregos são assim?");
+                    dialogos.Enqueue("Emily: Hum, tá bom, suponho que eu deveria ser grata por ter um emprego, afinal de contas.");
+                    dialogos.Enqueue("Emily: Ainda assim, meu corpo claramente não estava pronto pra isso. Nossa, que dor na coluna.");
+                    dialogos.Enqueue("Emily: *Cof cof*");
+                    dialogos.Enqueue("Emily: Ah, que ótimo a poeira está me prejudicando também.");
+                    proximaCena = "Cena 6";
                     break;
                 case "Cena 6":
-                    dialogos.Enqueue("Certo.");
-                    dialogos.Enqueue("A próxima é a quarta e última fase, nela a Hora Extra é garantida e sempre acontece (por motivos de história).");
-                    dialogos.Enqueue("Ela pode ser bem difícil, pois muitos pontos serão necessários para avançar.");
+                    dialogos.Enqueue("Chefe: Que bonito... isso é hora de chegar?");
+                    dialogos.Enqueue("Emily: Desculpe senhor, eu atrasei dois minutos, não acordei muito bem hoje.");
+                    dialogos.Enqueue("Chefe: Eu não me importo, minha filha. Você não foi contratada pra ficar falando da sua vida. E sim pra chegar NA HORA e fazer o seu trabalho.");
+                    dialogos.Enqueue("Chefe: Hoje você vai repor as gôndolas. Chegaram muitas mercadorias ao longo da semana, e os demais de vocês, incompetentes, não estão dando conta de organizar elas corretamente.");
+                    dialogos.Enqueue("Chefe: As caixas estão acumulando nos corredores e não há produtos o suficiente expostos para que os clientes gastem o dinheirinho cheiroso deles.");
+                    dialogos.Enqueue("Chefe: E acho que não preciso te lembrar que: se os clientes não gastam dinheiro, VOCÊ NÃO GANHA DINHEIRO. Então mexe logo essa bunda e vai procurar o David que ele vai te explicar o que você deve fazer.");
                     proximaCena = "Cena 7";
                     break;
                 case "Cena 7":
-                    dialogos.Enqueue("Nesta fase, você tem duas tarefas principais.");
-                    dialogos.Enqueue("A primeira e mais importante é a operação do caixa.");
-                    dialogos.Enqueue("Você deve interagir com os retângulos cinzas bem na parte de baixo do cenário sempre que houver um cliente aguardando na fila (um objeto em forma de capsula parado próximo ao caixa).");
-                    dialogos.Enqueue("Apresse-se sempre que houver clientes na fila, pois eles não aguardarão para sempre e irão embora. Se mais de 3 clientes irem embora, é Game Over.");
-                    proximaCena = "Cena 8";
+                    dialogos.Enqueue("Emily: Ufa, te encontrei. O chefe quer que eu trabalhe com a reposição hoje, e ele não tá nada satisfeito com a situação das gôndolas.");
+                    dialogos.Enqueue("David: *Suspiro*");
+                    dialogos.Enqueue("David: Me conta uma novidade.");
+                    dialogos.Enqueue("David: Eu juro que eu deveria pedir um aumento, por estar fazendo a função de professor nessa desgraça de lugar.");
+                    dialogos.Enqueue("Emily: Talvez você devesse, tenho certeza de que ele não vai resistir a este seu charme e entusiasmo.");
+                    dialogos.Enqueue("David: Ora ora, tá se sentindo a engraçadona né? Bora ver se o seu senso de humor continua intacto até o fim do dia então.");
+                    dialogos.Enqueue("David: Os produtos são divididos em quatro tipos, sendo frios, higiene, limpeza, comida e condimentos. Você deve retirá-los das suas respectivas caixas e os distribuir nas gôndolas corretas, conforme as cores.");
+                    dialogos.Enqueue("David: Não preciso explicar o porquê de não ser ideal ter água sanitária no meio de um monte de alimentos, não é mesmo?");
+                    dialogos.Enqueue("Emily: *revirando os olhos*");
+                    dialogos.Enqueue("David: Pois bem, além disso, suas outras tarefas te esperam, nada que você já não tenha feito antes.");
+                    dialogos.Enqueue("David: Se acostume, isso não parece que vai mudar tão cedo.");
+                    dialogos.Enqueue("Emily: Como se eu tivesse escolha...");
+                    dialogos.Enqueue("David: É aí que você se engana. Você sempre tem uma escolha. Bom, mãos à obra.");
+                    proximaCena = "Fase 3";
                     break;
                 case "Cena 8":
-                    dialogos.Enqueue("A segunda tarefa é o telefone de onde vem os pedidos de delivery.");
-                    dialogos.Enqueue("Ele é representado pelo quadrado vermelho na parede da sala ao lado dos caixas.");
-                    dialogos.Enqueue("O telefone tocará de tempos em tempos, e você deve atendê-lo antes que pare de tocar. Não atendê-lo fará você perder muitos pontos.");
-                    dialogos.Enqueue("Por enquanto pode ser um pouco difícil de saber quando ele estiver tocando, pretendemos colocar som na versão final, para que facilite perceber quando ele estiver tocando.");
-                    dialogos.Enqueue("Boa sorte.");
-                    proximaCena = "Fase 4";
+                    dialogos.Enqueue("Emily: ...se eu não tivesse tanta coisa pra pagar, tanta coisa para comprar, eu juro que não estaria mais passando por isso.");
+                    dialogos.Enqueue("Emily: ''Vai morar sozinha Emily, vai ser legal, ser independente é legal''.");
+                    dialogos.Enqueue("Emily: Do que adianta se eu só sirvo pra encher o bolso de um chefe desgraçado que não dá a mínima para os próprios funcionários, e que a essa altura nem se lembra mais pra que me contratou.");
+                    dialogos.Enqueue("Emily: Espero que ao menos sobre algum dinheiro para me divertir. Não aguento mais essa rotina casa-purgatór- digo, trabalho, todos os dias.");
+                    proximaCena = "Cena 9";
                     break;
                 case "Cena 9":
-                    dialogos.Enqueue("Essas foram as 4 fases do jogo.");
-                    dialogos.Enqueue("Como dito antes, coisas possívelmente vão mudar, e essa versão serve principalmente para testar o balanceamento do jogo e colher feedback.");
+                    dialogos.Enqueue("Chefe: Você vai operar os caixas hoje.");
+                    dialogos.Enqueue("Emily: O quê? Sério? Como assim?");
+                    dialogos.Enqueue("Chefe: Tá surda? Você vai operar os caixas. OS caixas.");
+                    dialogos.Enqueue("Chefe: Há dois caixas que estão operáveis e não há ninguém no momento. Vai ver com a Marta que ela vai explicar o que você deve fazer.");
+                    dialogos.Enqueue("Emily: Marta, por quê a Marta? Cadê o David?");
+                    dialogos.Enqueue("Chefe: Já foi tarde.");
+                    dialogos.Enqueue("Chefe: Por quinze anos eu tolerei aquele senso de humor ridículo, aquela cara de desmotivado. Pro bonitão decidir que logo hoje deveria me pedir um aumento. Hahaha. Muito engraçado.");
+                    dialogos.Enqueue("Chefe: Quem sabe você ainda o encontra se preparando para ir embora.");
+                    dialogos.Enqueue("Chefe: A propósito. O que você ainda tá fazendo aqui?");
+                    dialogos.Enqueue("Chefe: AO TRABALHO, GAROTA!");
+                    dialogos.Enqueue("Chefe: Se eu souber de clientes saindo insatisfeitos por não terem sido atendidos, VOCÊ VAI PRA RUA!");
+                    dialogos.Enqueue("Chefe: E EU NÃO QUERO SABER DE VOCÊ PERDENDO TEMPO INDO AO BANHEIRO DE NOVO.");
                     proximaCena = "Cena 10";
                     break;
                 case "Cena 10":
-                    dialogos.Enqueue("Obrigado por jogar.");
+                    dialogos.Enqueue("Emily: David, o que aconteceu?");
+                    dialogos.Enqueue("David: Fui mandado embora, infelizmente... ou felizmente... sei lá.");
+                    dialogos.Enqueue("Emily: Mas logo você? Você tá há tanto tempo aqui. E agora?");
+                    dialogos.Enqueue("David: Ora, exatamente. Hehe.");
+                    dialogos.Enqueue("David: Percebi o quão pouco eu ganhava tendo trabalhado por tanto tempo nessa empresa, tendo feito tanta coisa por aqui. Parecia injusto.");
+                    dialogos.Enqueue("David: Obviamente aquele demônio não levou numa boa, entendeu como uma afronta. Me chamou de preguiçoso, imprestável, blá blá blá...");
+                    dialogos.Enqueue("David: E aqui estamos.");
+                    dialogos.Enqueue("Emily: Mas por que você fez isso? Não precisava ter levado a sério.");
+                    dialogos.Enqueue("Emily: E como você pode estar tão tranquilo?");
+                    dialogos.Enqueue("David: Olha Emily, você ainda vai chegar nesse momento em que você vai estar cansada disso aqui e vai ter que tomar uma decisão. O resultado pode não ser o esperado, pode ser frustrante inicialmente, mas ao longo prazo, vai ter vindo para melhor.");
+                    dialogos.Enqueue("Emily: Não entendi. Eu não quero perder esse emprego, eu preciso dele...");
+                    dialogos.Enqueue("David: Eu também achei que precisava. Mas depois percebi que não vale a pena.");
+                    dialogos.Enqueue("David: Você vai perceber isso também.");
+                    dialogos.Enqueue("David: Comece pesquisando sobre seus direitos, você, eu, não deveríamos passar por isso.");
+                    dialogos.Enqueue("David: Bom, não se preocupe comigo.");
+                    dialogos.Enqueue("David: Boa sorte daqui pra frente.");
+                    proximaCena = "Cena 11";
+                    break;
+                case "Cena 11":
+                    dialogos.Enqueue("Marta: A mocinha já terminou de chorar?");
+                    dialogos.Enqueue("Emily: Hum? Do que você tá falan-");
+                    dialogos.Enqueue("Marta: Ah, tanto faz. Presta atenção, que eu só vou explicar uma vez.");
+                    dialogos.Enqueue("Marta: Nós temos dois caixas operantes, por onde os clientes vão formar fila para terem suas compras passadas e irem embora.");
+                    dialogos.Enqueue("Marta: Tudo que você deve fazer é passar as compras para que eles possam voltar felizes da vida para suas lindas casas.");
+                    dialogos.Enqueue("Marta: Assim como eu, você, qualquer pessoa, os clientes não gostam de ficar esperando muito tempo na fila, e irão embora se não forem atendidos por muito tempo.");
+                    dialogos.Enqueue("Marta: NÃO. DEIXE. ELES. SAÍREM.");
+                    dialogos.Enqueue("Emily: Credo. Tá bom.");
+                    dialogos.Enqueue("Marta: E mais uma coisa: nós frequentemente recebemos pedidos de delivery pelo telefone que tá ali na sala do chefe.");
+                    dialogos.Enqueue("Marta: Veja bem, minhas pernas já não são mais as mesmas. Você, por acaso uma moça bonita, jovem, não se importaria em ir atender esse telefone sempre que ele tocar, não é? Hihihi.");
+                    dialogos.Enqueue("Emily: Tá falando sério? Por que eu faria isso? Eu já tenho milhões de coisas pra fa-");
+                    dialogos.Enqueue("Marta: Boa sorte, mocinha!");
+                    dialogos.Enqueue("Emily: *Suspiro*");
+                    dialogos.Enqueue("Emily: Por que eles fazem isso?");
+                    proximaCena = "Fase 4";
+                    break;
+                case "Cena 12":
+                    dialogos.Enqueue("Emily: Já deveria ter caído na conta há uma semana atrás, mas ele finalmente chegou. Meu suado dinheirinho.");
+                    dialogos.Enqueue("Emily: O quê?! Isso é tudo? Foi para isso que eu me esforcei tanto?");
+                    dialogos.Enqueue("Emily: E as horas extras? Eu não ganho nada por aquilo tudo?");
+                    dialogos.Enqueue("Emily: David, o que você faria no meu lugar...?");
+                    dialogos.Enqueue("Emily: Espera, David?!");
+                    dialogos.Enqueue("Emily: Ele tinha falado alguma coisa sobre direitos. Será que eu realmente tenho como contestar isso?");
+                    proximaCena = "Cena 13";
+                    break;
+                case "Cena 13":
+                    dialogos.Enqueue("Emily: Eu sabia!");
+                    dialogos.Enqueue("Emily: Nada daquilo era normal, não deveria ser normal.");
+                    dialogos.Enqueue("Emily: Acúmulo de função, abuso moral... e porque não, hora extra não remunerada.");
+                    dialogos.Enqueue("Emily: Tem tanta coisa errada que eu poderia escrever um livro... Espera, é isso! Eu deveria ter registrado tudo o que aconteceu. A empresa tem que pagar por isso.");
+                    dialogos.Enqueue("Emily: Quem sabe se eu aguentar mais um mês. Coletar testemunhos de alguns colegas, registrar tudo...");
+                    proximaCena = "Cena 14";
+                    break;
+                case "Cena 14":
+                    dialogos.Enqueue("Chefe: Emily estou feliz em dizer que decidimos efetivar você aqui. Você realmente serve para alguma coisa, afinal. Hehehe.");
+                    dialogos.Enqueue("Emily: Obrigada. Mas antes de tomar qualquer decisão, gostaria de discutir algumas questões.");
+                    dialogos.Enqueue("Chefe: Do que você tá falando?");
+                    dialogos.Enqueue("Emily: Eu andei lendo sobre meus direitos e descobri algo bem interessante...");
+                    dialogos.Enqueue("Emily: O não pagamento de horas extras é ilegal. Ora ora.");
+                    dialogos.Enqueue("Emily: Pois saiba que documentei todas as horas extras que trabalhei e exijo remuneração.");
+                    dialogos.Enqueue("Chefe: Você não pode estar falando sério.");
+                    dialogos.Enqueue("Emily: Seríssima.");
+                    dialogos.Enqueue("Emily: Eu também registrei os abusos cometidos por você, não só comigo, mas com os demais funcionários.");
+                    dialogos.Enqueue("Emily: Eu tô cansada de ser explorada. Estou disposta a brigar na justiça por isso.");
+                    dialogos.Enqueue("Chefe: Ok, ok, tudo bem garota.");
+                    dialogos.Enqueue("Chefe: Me deixe verificar tudo e tento resolver a sua situação... assim que você aceitar a minha proposta de efetivação...");
+                    dialogos.Enqueue("Emily: Eu sabia! É por este motivo que não posso mais continuar aqui. Você não quer me ajudar.");
+                    dialogos.Enqueue("Emily: Já tomei minha decisão.");
+                    dialogos.Enqueue("Emily: Eu me demito.");
                     proximaCena = "Menu Principal";
                     break;
             }
@@ -170,9 +281,9 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
 
             if (!jogoPausado)
             {
-                if (dialogos.TryPeek(out string texto)) //Verificando se há uma string na fila antes de tentar dar Peek no texto.
+                if (dialogos.TryPeek(out string frase)) //Verificando se há uma string na fila antes de tentar dar Peek no texto.
                 {
-                    GerenciadorInterface.instancia.txtDialogos.text = texto; //Exibindo na tela o texto do topo da fila.
+                    GerenciadorInterface.instancia.txtDialogos.text = frase; //Exibindo na tela o texto do topo da fila.
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space)) //Verificando se a tecla Espaço foi pressionada, removendo o texto no topo da fila em seguida.
