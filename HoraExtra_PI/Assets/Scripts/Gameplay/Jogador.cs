@@ -52,24 +52,22 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         dir = new Vector2(dirX, dirY); //Vetor contendo as duas direções do qual o jogador pode se mover.
         jogRB.velocity = dir * vel; //Lógica de movimentação por velocity. O valor das variáveis de direção (0, 1 e -1) é multiplicado pela velocidade.
 
-        if ((jogRB.velocity.x != 0) || (jogRB.velocity.y != 0)) //Verificando as direções em que o jogador está se movimentando e mudando o valor das variáveis que determinam se está parado ou se movimentando.
+        if ((dir.x != 0) || (dir.y != 0)) //Verificando as direções em que o jogador está se movimentando e mudando o valor das variáveis que determinam se está parado ou se movimentando.
         {
             movendo = true;
             descansando = false;
-            jogAnim.SetBool("Andando", true);
-            jogAnim.SetBool("Parada", false);
+            jogAnim.SetInteger("vMove", 1);
         }
         else
         {
             movendo = false;
             descansando = true;
-            jogAnim.SetBool("Andando", false);
-            jogAnim.SetBool("Parada", true);
+            jogAnim.SetInteger("vMove", 0);
         }
 
-        if (dirX > 0)
+        if (dir.x > 0)
             sprRend.flipX = false;
-        else if (dirX < 0)
+        else if (dir.x < 0)
             sprRend.flipX = true;
 
 
@@ -83,13 +81,11 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         {
             correndo = false; //Determina que o jogador parou de correr.
             vel = 4f; //A velocidade volta para seu valor padrão.
-            jogAnim.SetBool("Correndo", false);
         }
 
         if (correndo && movendo) //Verifica se o jogador está no estado de corrida e se movendo, para que a energia não seja consumida sem que o jogador saia do lugar.
         {
             energia -= taxaConsumo * Time.deltaTime; //O valor da taxa de consumo (10) é subtraído da energia total por segundo enquanto o jogador estiver correndo.
-            jogAnim.SetBool("Correndo", true);
         }
         else //Caso o contrário, executa a lógica de regeneração de energia.
         {

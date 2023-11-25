@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5577190571239314526, guid: 6d968b245a412474b93bcbafd1738895, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.93
+      objectReference: {fileID: 0}
     - target: {fileID: 6368554106420790320, guid: 6d968b245a412474b93bcbafd1738895, type: 3}
       propertyPath: areasEntrega.Array.size
       value: 2
@@ -868,6 +872,10 @@ PrefabInstance:
       propertyPath: areasEntrega.Array.data[1]
       value: 
       objectReference: {fileID: 775310559}
+    - target: {fileID: 6542095184594905361, guid: 6d968b245a412474b93bcbafd1738895, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.98
+      objectReference: {fileID: 0}
     - target: {fileID: 7131431838914678692, guid: 6d968b245a412474b93bcbafd1738895, type: 3}
       propertyPath: m_Name
       value: F1Surgimento

@@ -9,7 +9,7 @@ public class F3Produtos : MonoBehaviour
 
     void Start()
     {
-        jogador = GameObject.Find("Marta");
+        jogador = GameObject.Find("Emily");
 
         transform.position = new Vector3(jogador.transform.position.x, jogador.transform.position.y, this.transform.position.z);
     }

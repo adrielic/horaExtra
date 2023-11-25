@@ -5,6 +5,7 @@ using UnityEngine;
 public class F4Clientes : MonoBehaviour
 {
     private Rigidbody2D npcRB;
+    private Animator npcAnim;
     private float contagem, tempoLimite = 15f;
     private bool noCaixa = false;
     private string caixa;
@@ -12,6 +13,7 @@ public class F4Clientes : MonoBehaviour
     void Start()
     {
         npcRB = GetComponent<Rigidbody2D>();
+        npcAnim = GetComponent<Animator>();
 
         if (F4Filas.numFila == 0)
         {
@@ -91,6 +93,15 @@ public class F4Clientes : MonoBehaviour
     void Movimentacao(float npcVel)
     {
         npcRB.velocity = new Vector2(npcRB.velocity.x, -1 * npcVel);
+
+        if (npcRB.velocity.y != 0)
+        {
+            npcAnim.SetInteger("vMove", 1);
+        } 
+        else
+        {
+            npcAnim.SetInteger("vMove", 0);
+        }
     }
 
     void Sair()
