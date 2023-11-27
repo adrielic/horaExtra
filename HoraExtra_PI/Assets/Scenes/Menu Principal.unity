@@ -182,7 +182,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Jogo desenvolvido para o Projeto Integrador IFBA - Lauro de Freitas\n\n\n\nEquipe:\n\n\n-
     \xCDcaro Adriel Brito Pires\n\n- Victor Catharino da Silva Cordeiro\n\n- Pablo
-    Menezes da Cruz\n\n- Bruno Do Carmo Sousa\n\n- Orientadora: Jocelma Rios"
+    Menezes da Cruz\n\n- Bruno Do Carmo Sousa\n\n- Jocelma Rios (Orientadora)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3c69a8d6bcdd8347a5344d68cf50894, type: 2}
   m_sharedMaterial: {fileID: 7032561099062810301, guid: e3c69a8d6bcdd8347a5344d68cf50894, type: 2}

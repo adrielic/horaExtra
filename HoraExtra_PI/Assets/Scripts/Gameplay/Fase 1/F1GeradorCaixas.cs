@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class F1GeradorCaixas : MonoBehaviour
 {
     public static int limiteT1, limiteT2, caixasEntregues;
-    public static bool caminhaoPresente = true;
+    public static bool caminhaoPresente;
     public GameObject[] caixas, pontosSurgimento, areasEntrega;
     public GameObject caminhaoCenario;
 
@@ -24,6 +24,7 @@ public class F1GeradorCaixas : MonoBehaviour
         if (GerenciadorCenas.cenaAtual.name == "Fase 1")
         {
             StartCoroutine(GerarCaixaT2(2f));
+            caminhaoPresente = true;
         }
         else
         {
