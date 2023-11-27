@@ -6,7 +6,7 @@ public class F4Clientes : MonoBehaviour
 {
     private Rigidbody2D npcRB;
     private Animator npcAnim;
-    private float contagem, tempoLimite = 15f;
+    private float contagem, tempoLimite = 20f;
     private bool noCaixa = false;
     private string caixa;
 
@@ -86,6 +86,7 @@ public class F4Clientes : MonoBehaviour
             Sair();
             Pontuacao.pontos += 150;
             GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
+            GerenciadorInterface.instancia.txtNotificacao.text = null;
             Debug.Log(gameObject.name + " atendido");
         }
     }

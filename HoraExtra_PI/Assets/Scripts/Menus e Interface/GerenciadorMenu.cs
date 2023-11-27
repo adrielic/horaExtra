@@ -7,6 +7,8 @@ public class GerenciadorMenu : MonoBehaviour //Classe que faz o gerenciamento do
 {
     public GameObject objCCM; //Recebe o game object Chave de Cenas.
     public ChaveCenasMenu ccm; //Recebe a instância da classe ChaveCenas.
+    public GameObject[] botoes;
+    public GameObject imgCreditos, telaCreditos;
 
     void Start()
     {
@@ -17,6 +19,28 @@ public class GerenciadorMenu : MonoBehaviour //Classe que faz o gerenciamento do
     {
         ccm.IniciarCena("Cena 1");
         Debug.Log("Iniciando o jogo");
+    }
+
+    public void AbrirCreditos()
+    {
+        telaCreditos.SetActive(true);
+        imgCreditos.GetComponent<Animator>().SetTrigger("Abrir");
+
+        for (int i = 0; i < botoes.Length; i++)
+        {
+            botoes[i].SetActive(false);
+        }
+    }
+
+    public void FecharCreditos()
+    {
+        telaCreditos.SetActive(false);
+        imgCreditos.GetComponent<Animator>().SetTrigger("Fechar");
+
+        for (int i = 0; i < botoes.Length; i++)
+        {
+            botoes[i].SetActive(true);
+        }
     }
 
     public void Sair()

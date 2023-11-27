@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscenes/Cena 14.unity
     guid: bf21c77f315220e428871dc5cdee0393
   - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cena 15.unity
+    guid: d86dc1254e7c49c4eb8e105112058be1
+  - enabled: 1
     path: Assets/Scenes/Gameplay/Fase 1.unity
     guid: 3f42706c4efd84240a204007b75db79b
   - enabled: 1

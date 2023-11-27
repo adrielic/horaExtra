@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class F4Telefone : MonoBehaviour
 {
-    [SerializeField] private float contagem, tempoLimite = 10f;
+    [SerializeField] private float contagem, tempoLimite = 18f;
     private bool tocando = false;
 
     void Update()
@@ -53,6 +53,7 @@ public class F4Telefone : MonoBehaviour
             Pontuacao.pontos += 150;
             GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
             GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", false);
+            GerenciadorInterface.instancia.txtNotificacao.text = null;
             Debug.Log("Ligação atendida");
         }
     }

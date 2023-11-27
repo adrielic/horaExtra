@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &671322087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8993268862424204368, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
-  m_PrefabInstance: {fileID: 4169982031010639067}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686777124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 475352320562352470, guid: 83061297fa587204ebdb2631d4539511, type: 3}
@@ -270,7 +265,7 @@ PrefabInstance:
     - target: {fileID: 607441129914471892, guid: e696d71c10446dd40b26bad06601c932, type: 3}
       propertyPath: objPausa
       value: 
-      objectReference: {fileID: 671322087}
+      objectReference: {fileID: 0}
     - target: {fileID: 607441129914471892, guid: e696d71c10446dd40b26bad06601c932, type: 3}
       propertyPath: dialogosUI
       value: 
@@ -360,6 +355,26 @@ PrefabInstance:
       propertyPath: objCC
       value: 
       objectReference: {fileID: 686777124}
+    - target: {fileID: 7245180143766412345, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: m_fontStyle
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245180143766412345, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245180143766412345, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245180143766412345, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245180143766412345, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4285333495
+      objectReference: {fileID: 0}
     - target: {fileID: 7532302555002643706, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
       propertyPath: m_Pivot.x
       value: 0

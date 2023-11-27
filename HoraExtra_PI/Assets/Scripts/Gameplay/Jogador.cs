@@ -7,7 +7,7 @@ using UnityEditor;
 public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mecânicas, como movimentação, interação, etc.
 {
     //Gerais.
-    private float vel = 4f, energia, taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
+    [SerializeField]private float vel = 5f, energia, taxaConsumo = 10f; //Variáveis de velocidade, total de energia (stamina) e consumo de energia ao correr. Serializadas para melhor checagem dos valores em tempo de execução.
     private bool movendo = false, descansando = false, correndo = false; //Variáveis utilizadas para verificar a movimentação do jogador.
     private Rigidbody2D jogRB; //Variável que recebe o componente Rigidbody2D, utilizado no sistema de movimentação de personagem.
     private Animator jogAnim;
@@ -74,13 +74,13 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.X)) && energia > 0) //Verifica se o jogador está pressionando a teclas de correr e se a energia está acima de 0, executando a lógica de corrida em seguida.
         {
             correndo = true; //Determina que o jogador está correndo.
-            vel = 8f; //Recebe o dobro da velocidade de movimentação.
+            vel = vel*2; //Recebe o dobro da velocidade de movimentação.
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.X) || energia <= 0) //Verifica se o jogador soltou a tecla 'Espaço' ou se a energia chegou à zero.
         {
             correndo = false; //Determina que o jogador parou de correr.
-            vel = 4f; //A velocidade volta para seu valor padrão.
+            vel = 5f; //A velocidade volta para seu valor padrão.
         }
 
         if (correndo && movendo) //Verifica se o jogador está no estado de corrida e se movendo, para que a energia não seja consumida sem que o jogador saia do lugar.
@@ -208,12 +208,12 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
     {
         switch (col.gameObject.tag) //Verifica a tag do objeto em que o jogador está colidindo, mudando os valores das variáveis relacionadas ao sistema de interação.
         {
-            case "NPC": //Tag utilizada nos GameObjects de personagens não jogáveis.
+            /*case "NPC": //Tag utilizada nos GameObjects de personagens não jogáveis.
                 objetoProximo = col.gameObject.name; //Esta linha, assim como as demais iguais, atribui o valor da variável 'objetoProximo' como o nome do GameObject em que o jogador está interagindo no momento.
                 GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", true);
                 GerenciadorInterface.instancia.txtInteracao.text = "Falar";
                 Debug.Log("objetoProximo = " + objetoProximo);
-                break;
+                break;*/
             case "F4TA": //Tag utilizada nos GameObjects relacionados à tarefa principal da fase 4 (Caixas).
                 if (!segurandoProd && !segurandoItemLimpeza)
                 {

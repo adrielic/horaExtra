@@ -9,6 +9,7 @@ public class F1GeradorCaixas : MonoBehaviour
     public static int limiteT1, limiteT2, caixasEntregues;
     public static bool caminhaoPresente = true;
     public GameObject[] caixas, pontosSurgimento, areasEntrega;
+    public GameObject caminhaoCenario;
 
     private IEnumerator caminhao;
 
@@ -93,7 +94,8 @@ public class F1GeradorCaixas : MonoBehaviour
 
                 areasEntrega[1].SetActive(false);
                 caminhaoPresente = false;
-                GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão está indo embora.";
+                caminhaoCenario.GetComponent<Animator>().SetTrigger("Saindo");
+                GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão foi embora.";
                 Debug.Log("Caminhão indo embora");
             }
             else
@@ -102,6 +104,7 @@ public class F1GeradorCaixas : MonoBehaviour
                 areasEntrega[1].SetActive(true);
                 caminhaoPresente = true;
                 caixasEntregues = 0;
+                caminhaoCenario.GetComponent<Animator>().SetTrigger("Chegando");
                 GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão está aguardando para entrega.";
                 Debug.Log("Caminhao chegou");
             }

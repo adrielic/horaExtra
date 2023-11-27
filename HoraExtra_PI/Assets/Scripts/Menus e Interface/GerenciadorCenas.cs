@@ -25,6 +25,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
         if (cenaAtual.name == "Fase 1" || cenaAtual.name == "Fase 2" || cenaAtual.name == "Fase 3" || cenaAtual.name == "Fase 4") //Verificando se a cena atual é alguma das fases do jogo.
         {
             tipoCena = "Gameplay"; //Rotulando qualquer uma das cenas acima como do tipo Gameplay.
+            Cursor.visible = false;
 
             switch (cenaAtual.name) //Verificando qual fase está atualmente ativa, em seguida determinando o valor da meta de pontuação de cada fase e armazenando a cena seguinte.
             {
@@ -49,6 +50,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
         else //Verificando o restante das cenas.
         {
             tipoCena = "Cutscene"; //Rotulando qualquer uma das demais cenas como do tipo Cutscene.
+            Cursor.visible = false;
 
             switch (cenaAtual.name) //Verificando qual fase está atualmente ativa, em seguida inserindo as linhas de diálogo à fila e armazenando a cena seguinte.
             {
@@ -68,9 +70,9 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                     dialogos.Enqueue("David: Ah, você deve ser a novata, deu pra ouvir os gritos.");
                     dialogos.Enqueue("David: Se acostume, é como as coisas funcionam por aqui. Prazer, David.");
                     dialogos.Enqueue("David: Pelo visto vou ter que brincar de ser professor. Que saco.");
-                    dialogos.Enqueue("David: Vamos lá. Tá vendo aquele caminhão azul? Ele traz as mercadorias que ficamos encarregados de preparar para que sejam dispostas no pátio.");
-                    dialogos.Enqueue("David: Há também os produtos que vem daquela esteira, preparados serem entregues nas casas dos nossos clientes ao longo do dia, através daquele outro caminhão. Ele obviamente não fica aqui para sempre, então quando ele estiver, lembre-se de entregar pelo menos duas caixas, ou saímos no prejuízo.");
-                    dialogos.Enqueue("Emily: Ok, acho que entendi. Empurrar as caixas marrons do caminhão A ao local A. Empurrar as caixas cinzas do local B ao caminhão B. Parece simples.");
+                    dialogos.Enqueue("David: Vamos lá. Tá vendo aquele caminhão azul? Ele traz as mercadorias que ficamos encarregados de preparar para que sejam dispostas no pátio. Elas devem ser empurradas até aqui.");
+                    dialogos.Enqueue("David: Há também os produtos que vem daquela esteira, preparados serem entregues nas casas dos nossos clientes ao longo do dia, através daquele outro caminhão vermelho. Ele obviamente não fica aqui para sempre, então quando ele estiver, lembre-se de entregar pelo menos duas caixas, ou saímos no prejuízo.");
+                    dialogos.Enqueue("Emily: Ok, acho que entendi. Empurrar as caixas marrons do caminhão azul até ao canto com as prateleiras. E empurrar as caixas cinzas até caminhão vermelho. Parece simples.");
                     dialogos.Enqueue("David: É simples. Até as suas costas começarem a reclamar. Hahaha.");
                     dialogos.Enqueue("David: Uma última coisa.");
                     dialogos.Enqueue("David: Você deve ter percebido que estamos em falta de pessoal por aqui. Isso é porque o nosso ''bom'' chefinho decidiu transferir alguns dos nossos para outra filial contra a vontade deles. Disse que ''não estavam dando duro o suficiente''.");
@@ -228,6 +230,10 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                     dialogos.Enqueue("Emily: Eu sabia! É por este motivo que não posso mais continuar aqui. Você não quer me ajudar.");
                     dialogos.Enqueue("Emily: Já tomei minha decisão.");
                     dialogos.Enqueue("Emily: Eu me demito.");
+                    proximaCena = "Cena 15";
+                    break;
+                case "Cena 15":
+                    dialogos.Enqueue("Obrigado por jogar.");
                     proximaCena = "Menu Principal";
                     break;
             }
@@ -239,29 +245,27 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!jogoPausado)
-            {
-                GerenciadorInterface.instancia.pausa.SetActive(true);
-                Cursor.visible = true;
-                jogoPausado = true;
-                Time.timeScale = 0;
-                Debug.Log("jogoPausado = " + jogoPausado);
-            }
-            else
-            {
-                Time.timeScale = 1;
-                GerenciadorInterface.instancia.pausa.SetActive(false);
-                Cursor.visible = false;
-                jogoPausado = false;
-                Debug.Log("jogoPausado = " + jogoPausado);
-            }
-        }
-
         if (tipoCena == "Gameplay") //Verifica se uma cena de gameplay está ativa.
         {
-            Cursor.visible = false;
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!jogoPausado)
+                {
+                    GerenciadorInterface.instancia.pausa.SetActive(true);
+                    Cursor.visible = true;
+                    jogoPausado = true;
+                    Time.timeScale = 0;
+                    Debug.Log("jogoPausado = " + jogoPausado);
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    GerenciadorInterface.instancia.pausa.SetActive(false);
+                    Cursor.visible = false;
+                    jogoPausado = false;
+                    Debug.Log("jogoPausado = " + jogoPausado);
+                }
+            }
 
             if (Pontuacao.resultado == "Vitoria") //Verificando se o resultado da fase foi de vitória, congelando o tempo em seguida.
             {
@@ -277,7 +281,6 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
         }
         else if (tipoCena == "Cutscene") //Verifica se uma cena de cutscene está ativa.
         {
-            Cursor.visible = false;
 
             if (!jogoPausado)
             {
@@ -300,6 +303,11 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                     cc.IniciarCena(proximaCena); //Carregando a próxima cena.
                 }
             }
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.N))
+        {
+            cc.IniciarCena(proximaCena);
         }
     }
 }
