@@ -20,9 +20,12 @@ public class F2Sujeira : MonoBehaviour
             if (collision.gameObject.name.Equals(tipoDeUtencilio))
             {
                 Pontuacao.pontos += 50;
+                GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Varrendo"));
                 GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
                 F2Spawner.qntdSujeiras--;
-                Destroy(this.gameObject);
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(this.gameObject, 0.8f);
             }
         }
     }

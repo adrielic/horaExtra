@@ -27,12 +27,12 @@ public class F4Filas : MonoBehaviour
             Tarefas.iniciandoFilas = false;
         }
 
-        if (falhas > 3)
+        if (falhas >= 3)
         {
             Pontuacao.resultado = "Derrota";
         }
 
-        GerenciadorInterface.instancia.txtClientes.text = "" + falhas;
+        GerenciadorInterface.instancia.txtClientes.text = "" + falhas + "/3";
     }
 
     void GerarCliente()

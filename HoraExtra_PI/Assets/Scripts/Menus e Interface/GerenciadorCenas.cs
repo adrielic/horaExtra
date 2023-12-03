@@ -252,6 +252,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                 if (!jogoPausado)
                 {
                     GerenciadorInterface.instancia.pausa.SetActive(true);
+                    GerenciadorInterface.instancia.pausa.GetComponent<Animator>().SetTrigger("On");
                     Cursor.visible = true;
                     jogoPausado = true;
                     Time.timeScale = 0;
@@ -260,6 +261,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                 else
                 {
                     Time.timeScale = 1;
+                    GerenciadorInterface.instancia.pausa.GetComponent<Animator>().SetTrigger("Off");
                     GerenciadorInterface.instancia.pausa.SetActive(false);
                     Cursor.visible = false;
                     jogoPausado = false;

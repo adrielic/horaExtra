@@ -7,7 +7,7 @@ public class F4Clientes : MonoBehaviour
     private Rigidbody2D npcRB;
     private Animator npcAnim;
     private float contagem, tempoLimite = 20f;
-    private bool noCaixa = false;
+    private bool noCaixa = false, atendido = false;
     private string caixa;
 
     void Start()
@@ -85,6 +85,7 @@ public class F4Clientes : MonoBehaviour
 
             Sair();
             Pontuacao.pontos += 150;
+            GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Passando Compra"), 0.2f);
             GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
             GerenciadorInterface.instancia.txtNotificacao.text = null;
             Debug.Log(gameObject.name + " atendido");
@@ -98,7 +99,7 @@ public class F4Clientes : MonoBehaviour
         if (npcRB.velocity.y != 0)
         {
             npcAnim.SetInteger("vMove", 1);
-        } 
+        }
         else
         {
             npcAnim.SetInteger("vMove", 0);
@@ -107,8 +108,9 @@ public class F4Clientes : MonoBehaviour
 
     void Sair()
     {
+        noCaixa = false;
+        caixa = null;
         Movimentacao(5f);
-        Destroy(gameObject, 5);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -116,13 +118,22 @@ public class F4Clientes : MonoBehaviour
         if (col.gameObject.tag == "F4TA")
         {
             Movimentacao(0f);
-            noCaixa = true;
-            caixa = col.gameObject.name;
+
+            if (!atendido)
+            {
+                noCaixa = true;
+                caixa = col.gameObject.name;
+            }
         }
 
         if (col.gameObject.tag == "NPC")
         {
             Movimentacao(0f);
+        }
+
+        if (col.gameObject.tag == "Finish")
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -131,8 +142,6 @@ public class F4Clientes : MonoBehaviour
         if (col.gameObject.tag == "F4TA")
         {
             Movimentacao(5f);
-            noCaixa = false;
-            caixa = null;
         }
 
         if (col.gameObject.tag == "NPC")

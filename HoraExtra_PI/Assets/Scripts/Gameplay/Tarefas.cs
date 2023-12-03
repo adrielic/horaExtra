@@ -23,7 +23,7 @@ public class Tarefas : MonoBehaviour //Classe relacionada as Coroutines que inic
         switch (GerenciadorCenas.cenaAtual.name)
         {
             case "Fase 1": //Verificando se a cena atual é a Fase 1.
-                f1_caixas = IniciarF1Caixas(4f);
+                f1_caixas = IniciarF1Caixas(2f);
                 GerenciadorInterface.instancia.tutorial.GetComponent<Animator>().SetTrigger("Exibir");
                 contador.rNum = 0; //Atribuindo rNum para 0, uma vez que na primeira fase a hora extra nunca acontece.
 

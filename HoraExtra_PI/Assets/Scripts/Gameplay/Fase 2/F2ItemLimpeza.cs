@@ -10,7 +10,7 @@ public class F2ItemLimpeza : MonoBehaviour
 
     void Update()
     {
-         if (sendoSegurado)
+        if (sendoSegurado)
         {
             transform.position = new Vector2(jogador.transform.position.x, jogador.transform.position.y - 0.5f);
         }

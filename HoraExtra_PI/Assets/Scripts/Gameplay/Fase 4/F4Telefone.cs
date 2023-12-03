@@ -21,6 +21,11 @@ public class F4Telefone : MonoBehaviour
             GerenciadorInterface.instancia.txtNotificacao.text = "O telefone está tocando.";
             contagem += Time.deltaTime;
 
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Telefone"), 0.2f);
+            }           
+
             if (contagem >= tempoLimite)
             {
                 tocando = false;

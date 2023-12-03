@@ -28,6 +28,7 @@ public class F1GeradorCaixas : MonoBehaviour
         }
         else
         {
+            caminhaoCenario.GetComponent<Animator>().SetTrigger("Saindo");
             areasEntrega[1].SetActive(false);
             caminhaoPresente = false;
         }
@@ -50,7 +51,7 @@ public class F1GeradorCaixas : MonoBehaviour
 
             if (tipo == 1)
             {
-                if (limiteT1 < 5)
+                if (limiteT1 < 3)
                 {
                     Instantiate(caixas[Random.Range(0, 3)], pontosSurgimento[0].transform.position, Quaternion.identity);
                     GerenciadorInterface.instancia.txtNotificacao.text = "Há novas mercadorias aguardando o transporte.";
@@ -66,7 +67,7 @@ public class F1GeradorCaixas : MonoBehaviour
         {
             yield return new WaitForSeconds(espera);
 
-            if (limiteT2 < 5)
+            if (limiteT2 < 3)
             {
                 Instantiate(caixas[Random.Range(3, 6)], new Vector2(pontosSurgimento[1].transform.position.x + 2, pontosSurgimento[1].transform.position.y), Quaternion.identity);
                 Debug.Log("Gerando T2");
@@ -84,18 +85,19 @@ public class F1GeradorCaixas : MonoBehaviour
             {
                 if (caixasEntregues < 2)
                 {
-                    Pontuacao.pontos -= 40 - caixasEntregues * 20;
+                    Pontuacao.pontos -= 50 - caixasEntregues * 20;
                     GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("-Dinheiro");
                 }
                 else if (caixasEntregues >= 2)
                 {
-                    Pontuacao.pontos += 20 * caixasEntregues;
+                    Pontuacao.pontos += 25 * caixasEntregues;
                     GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
                 }
 
                 areasEntrega[1].SetActive(false);
                 caminhaoPresente = false;
                 caminhaoCenario.GetComponent<Animator>().SetTrigger("Saindo");
+                GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Dando Partida"), 0.5f);
                 GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão foi embora.";
                 Debug.Log("Caminhão indo embora");
             }
@@ -106,6 +108,7 @@ public class F1GeradorCaixas : MonoBehaviour
                 caminhaoPresente = true;
                 caixasEntregues = 0;
                 caminhaoCenario.GetComponent<Animator>().SetTrigger("Chegando");
+                GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Estacionando"), 0.2f);
                 GerenciadorInterface.instancia.txtNotificacao.text = "O caminhão está aguardando para entrega.";
                 Debug.Log("Caminhao chegou");
             }

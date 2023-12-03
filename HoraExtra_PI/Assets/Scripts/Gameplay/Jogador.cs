@@ -12,6 +12,8 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
     private Rigidbody2D jogRB; //Variável que recebe o componente Rigidbody2D, utilizado no sistema de movimentação de personagem.
     private Animator jogAnim;
     private SpriteRenderer sprRend;
+    private AudioSource audioSrc;
+    private AudioClip somPassos, somProduto;
     private Vector2 dir; //Recebe os valores de direção para qual o jogador pode se mover.
     public static string objetoProximo; //Variável utilizada para verificação do objeto no qual o jogador está colidindo no momento, servindo de base para o sistema de interação. Precisa ser pública e estática, para que possa ser chamada nas classes onde a verificação acontece.
 
@@ -27,8 +29,11 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
     void Start()
     {
         jogRB = GetComponent<Rigidbody2D>(); //Adicionando o componente Rigidbody2D à variável.
-        jogAnim = GetComponent<Animator>();
-        sprRend = GetComponent<SpriteRenderer>();
+        jogAnim = GetComponent<Animator>(); //Adicionando o componente Animator à variável.
+        sprRend = GetComponent<SpriteRenderer>(); //Adicionando o componente Sprite Renderer à variável.
+        audioSrc = GetComponent<AudioSource>(); //Adicionando o componente Audio Source à variável.
+        somPassos = Resources.Load<AudioClip>("Passos");
+        somProduto = Resources.Load<AudioClip>("Colocando");
 
         energia = 100f; //Atribuindo o valor de energia máxima ao executar o jogo. É importante isso estar no Start. Do contrário, o jogador começa com 0 de energia e ela começa a ser regenerada aos poucos.
     }
@@ -57,6 +62,11 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
             movendo = true;
             descansando = false;
             jogAnim.SetInteger("vMove", 1);
+
+            if (!audioSrc.isPlaying)
+            {
+                audioSrc.PlayOneShot(Resources.Load<AudioClip>("Passos"), 0.2f);
+            } 
         }
         else
         {
@@ -174,6 +184,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
                             objInteragivel.GetComponent<F3Prateleiras>().produto = produto;
                             segurandoProd = false;
                             Pontuacao.pontos += 100;
+                            GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Colocando"), 0.2f);
                             GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("+Dinheiro");
                             GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", false);
                         }
@@ -188,6 +199,7 @@ public class Jogador : MonoBehaviour //Classe relacionada ao jogador e suas mec�
                             objInteragivel.GetComponent<F3Prateleiras>().produto = produto;
                             segurandoProd = false;
                             Pontuacao.pontos -= 100;
+                            GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Colocando"), 0.2f);
                             GerenciadorInterface.instancia.tarefa.GetComponent<Animator>().SetTrigger("-Dinheiro");
                             GerenciadorInterface.instancia.interacao.GetComponent<Animator>().SetBool("Exibindo", false);
                         }

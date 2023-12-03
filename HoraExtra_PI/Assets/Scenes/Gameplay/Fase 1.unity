@@ -2546,16 +2546,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7770889956743692310, guid: 2d73edb4e4d5699498286d23869b2ea6, type: 3}
-      propertyPath: tempo
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7770889956743692310, guid: 2d73edb4e4d5699498286d23869b2ea6, type: 3}
       propertyPath: contadorUI
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7770889956743692310, guid: 2d73edb4e4d5699498286d23869b2ea6, type: 3}
-      propertyPath: tempoTotal
-      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 7770889956743692310, guid: 2d73edb4e4d5699498286d23869b2ea6, type: 3}
       propertyPath: relogioAnim
@@ -2610,6 +2602,18 @@ PrefabInstance:
       propertyPath: nomesCenas.Array.data[14]
       value: Menu Principal
       objectReference: {fileID: 0}
+    - target: {fileID: 1354234422857792130, guid: e696d71c10446dd40b26bad06601c932, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354234422857792130, guid: e696d71c10446dd40b26bad06601c932, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354234422857792130, guid: e696d71c10446dd40b26bad06601c932, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ffc05f1b783a23499eb1f380af5c2a5, type: 3}
     - target: {fileID: 2206849322467658519, guid: e696d71c10446dd40b26bad06601c932, type: 3}
       propertyPath: m_Name
       value: Gerenciador de Cenas

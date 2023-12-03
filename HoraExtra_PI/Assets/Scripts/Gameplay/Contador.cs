@@ -29,6 +29,7 @@ public class Contador : MonoBehaviour //Classe relacionada ao Contador/Relógio 
                     rNum = 0; //Retornando o valor de rNum para 0, evitando que esta lógica rode em looping.
                     IniciarContagem(); //Reiniciando a contagem.
                     GerenciadorInterface.instancia.imgRelogio.GetComponent<Animator>().SetTrigger("HoraExtra");
+                    GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Hora Extra"), 0.2f);
                     GerenciadorInterface.instancia.txtNotificacao.text = "HORA EXTRA!";
                     Debug.Log("tempoExtra = " + tempoExtra);
                 }
