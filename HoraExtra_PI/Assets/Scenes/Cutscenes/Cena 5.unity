@@ -149,11 +149,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 102533302755629439, guid: ed823e93fb931ea4db6d5a1db42be6d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 102533302755629439, guid: ed823e93fb931ea4db6d5a1db42be6d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 102533302755629439, guid: ed823e93fb931ea4db6d5a1db42be6d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -186,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 102533302755629439, guid: ed823e93fb931ea4db6d5a1db42be6d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856144070960878115, guid: ed823e93fb931ea4db6d5a1db42be6d2, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4433963998220617961, guid: ed823e93fb931ea4db6d5a1db42be6d2, type: 3}
       propertyPath: m_Name
@@ -289,7 +293,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.019607844, g: 0.019607844, b: 0.019607844, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -314,7 +318,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -339,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 1775122747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -514,6 +518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interface (Cutscene)
       objectReference: {fileID: 0}
+    - target: {fileID: 725139373852296055, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1773269853341664726, guid: 13da6ad044a0a974bbf3eabf04cf4859, type: 3}
       propertyPath: m_Camera
       value: 
@@ -642,11 +650,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4725400437387440281, guid: cc26768d62b671f498b77c18d8a1ce9a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -3.62
       objectReference: {fileID: 0}
     - target: {fileID: 4725400437387440281, guid: cc26768d62b671f498b77c18d8a1ce9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4725400437387440281, guid: cc26768d62b671f498b77c18d8a1ce9a, type: 3}
       propertyPath: m_LocalPosition.z

@@ -817,7 +817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 609.99994, y: 378.00003}
+  m_AnchoredPosition: {x: 609.99994, y: 378}
   m_SizeDelta: {x: 84.269, y: 30.6677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &848932950483352061
@@ -2136,7 +2136,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6085012225795782226}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2145,8 +2145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 610, y: 401.48004}
-  m_SizeDelta: {x: 68.38, y: 68.38}
+  m_AnchoredPosition: {x: 626.3, y: 411.3}
+  m_SizeDelta: {x: 90.096, y: 90.0962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1434129392412732637
 CanvasRenderer:
@@ -2176,9 +2176,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c839b3b6da115d04fa505cbd9b6f3b9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df161cf617287a7479f58c589b667d76, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

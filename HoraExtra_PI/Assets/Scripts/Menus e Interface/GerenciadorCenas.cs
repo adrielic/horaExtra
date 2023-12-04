@@ -84,7 +84,7 @@ public class GerenciadorCenas : MonoBehaviour //Classe que gerencia as cenas do 
                 case "Cena 3":
                     dialogos.Enqueue("Emily: Droga, ele não mentiu, minha coluna tá começando a doer.");
                     dialogos.Enqueue("Emily: *Ai*");
-                    dialogos.Enqueue("Emily: Bem que hoje, depois de três dias trabalhando aqui, eu poderia finalmente operar o caixa, ficar sentada um pouco. Não aguento mais empurrar caixas.");
+                    dialogos.Enqueue("Emily: Bem que amanhã eu poderia finalmente operar o caixa, ficar sentada um pouco. Já foram três dias empurrando caixas, eu não aguento mais.");
                     proximaCena = "Cena 4";
                     break;
                 case "Cena 4":
