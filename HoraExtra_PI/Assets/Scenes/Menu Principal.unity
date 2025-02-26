@@ -180,10 +180,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Jogo desenvolvido para o Projeto Integrador IFBA - Lauro de Freitas.\n\n\nTema:
-    Direitos Trabalhistas\n\n\nEquipe:\n\n- \xCDcaro Adriel Brito Pires\n\n- Victor
-    Catharino da Silva Cordeiro\n\n- Pablo Menezes da Cruz\n\n- Bruno Do Carmo Sousa\n\n\nOrientadora:
-    Jocelma Rios\n\n\nM\xFAsica: Sounds of the Supermarket - (1975)\n"
+  m_text: "Projeto Integrador 2023.2 do curso de Tecnologia em Jogos Digitais do
+    IFBA - Lauro de Freitas.\n\n\nTema: Direitos Trabalhistas\n\n\n\u200BCr\xE9ditos:\r\n\r\nPrograma\xE7\xE3o:
+    \xCDcaro Pires e Victor Cordeiro\r\nIlustra\xE7\xE3o: \xCDcaro Pires\u200B e
+    Victor Cordeiro\u200B\r\nRoteiro: \xCDcaro Pires\u200B\r\nGame Design: \xCDcaro
+    Pires\u200B e Victor Cordeiro\u200B\r\nAnima\xE7\xE3o: Victor Cordeiro\u200B\r\n\n\nOrientadora:
+    Profa. Jocelma Rios\n\n\nTrilha Sonora: Sounds of the Supermarket - (1975)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3c69a8d6bcdd8347a5344d68cf50894, type: 2}
   m_sharedMaterial: {fileID: 7032561099062810301, guid: e3c69a8d6bcdd8347a5344d68cf50894, type: 2}
@@ -217,7 +219,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
